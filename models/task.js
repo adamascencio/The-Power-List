@@ -12,7 +12,11 @@ const taskSchema = new Schema ({
     type: Date,
     default: function() {return new Date();}
   },
-  done: Boolean
+  done: Boolean,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  }
 });
 
 module.exports = mongoose.model('Task', taskSchema);
