@@ -1,1 +1,24 @@
+<%- include ('../partials/index-header') %>
 <h1>Daily Tasks</h1>
+<ul>
+  <% tasks.forEach(function(task) { %>
+    <li>
+      <%= task.name %>
+    </li>
+    <li>
+      <%= task.name %>
+    </li>
+    <li>
+      <%= task.name %>
+    </li>
+    <li>
+      <%= task.name %>
+    </li>
+    <li>
+      <%= task.name %>
+    </li>
+  <% }); %>
+</ul>
+
+
+<%- include('../partials/footer') %>

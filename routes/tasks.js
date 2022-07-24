@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const tasksCtrl = require('../controllers/tasks');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// All routes begin with "/tasks"
+/* GET /tasks (index functionality - show all tasks) */
+router.get('/', tasksCtrl.index);
 
 module.exports = router;
