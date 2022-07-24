@@ -11,10 +11,6 @@ const tagSchema = new Schema({
   category: {
     type: String,
     enum: ['Work', 'Personal', 'School', 'Other'],
-  },
-  task: {
-    type: Schema.Types.ObjectId,
-    ref: 'Task',
   }
 });
 

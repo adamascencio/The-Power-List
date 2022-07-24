@@ -13,9 +13,13 @@ const taskSchema = new Schema ({
     default: function() {return new Date();}
   },
   done: Boolean,
+  tag: {
+    type: Schema.Types.ObjectId,
+    ref: 'Tag'
+  },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'User'
   }
 });
 
