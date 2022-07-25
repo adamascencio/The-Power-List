@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tagSchema = new Schema({
-  rank: {
-    type: Number,
-    enum: [1, 2, 3, 4, 5],
-    required: true
-  },
   notes: String,
   category: {
     type: String,

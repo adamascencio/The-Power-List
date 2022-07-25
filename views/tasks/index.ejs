@@ -1,9 +1,9 @@
 <%- include ('../partials/tasks/index-header') %>
 <h1><%= user.name %>'s Daily Tasks</h1>
 <ul>
-  <% tasks.forEach(function(task) { %>
+  <% tasks.forEach(function(task, idx) { %>
     <li>
-      <%= task.name %>
+      <h2>Task #<%= idx %>: <%= task.name %></h2>
     </li>
   <% }); %>
 </ul>
