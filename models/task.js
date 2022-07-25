@@ -4,15 +4,14 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema ({
   name: [{
     type: String,
-    required: true,
-    timestamps: true
+    required: true
   }], 
-  id: Number,
   date: {
     type: Date,
     default: function() {return new Date();}
   },
   done: Boolean,
+  notes: String,
   tag: {
     type: Schema.Types.ObjectId,
     ref: 'Tag'
@@ -21,6 +20,7 @@ const taskSchema = new Schema ({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
-});
+}, 
+{timestamps: true});
 
 module.exports = mongoose.model('Task', taskSchema);
