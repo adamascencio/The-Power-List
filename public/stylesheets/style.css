@@ -40,6 +40,12 @@ a {
   color: var(--bs-body-color);
 }
 
+.google-logo {
+  width: 25px;
+  object-fit: auto;
+  margin-right: 10px;
+}
+
 #user-log-in {
   display: flex;
   flex-direction: column;
