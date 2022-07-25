@@ -58,3 +58,21 @@ a {
   padding: 20px;
   margin: 0 auto;
 }
+
+/* New Tasks Form Styles */
+
+#new-tasks-form > .form-group {
+  margin-top: 10px;
+}
+
+#new-nav {
+  padding-left: 25px;
+  padding-right: 25px; 
+  justify-content: space-between;
+}
+
+#new-tasks-form {
+  width: 50vw;
+  max-width: 500px;
+  margin: 0 auto;
+}
