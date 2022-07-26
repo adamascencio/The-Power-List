@@ -66,6 +66,33 @@ a {
   margin-left: auto;
 }
 
+ul > li {
+  list-style: none;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+#avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+#task-heading {
+  margin-top: 30px;
+}
+
+#task-listing {
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+}
+
+
 /* New Tasks Form Styles */
 
 .grid {
@@ -92,7 +119,7 @@ a {
 }
 
 #new-nav {
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 #new-tasks-form {

@@ -1,16 +1,29 @@
 <%- include ('../partials/tasks/index-header') %>
-<h1><%= user.name %>'s Daily Tasks</h1>
-<ul>
-  <% tasks.forEach(function(task, idx) { %>
-    <li>
-      <h2>Task #<%= idx %>: <%= task.task1 %></h2>
-      <h2>Task #<%= idx %>: <%= task.task2 %></h2>
-      <h2>Task #<%= idx %>: <%= task.task3 %></h2>
-      <h2>Task #<%= idx %>: <%= task.task4 %></h2>
-      <h2>Task #<%= idx %>: <%= task.task5 %></h2>
-    </li>
-  <% }); %>
-</ul>
+  
+  <h1 id="task-heading"><%= user.name %>'s Daily Tasks</h1>
+  <h3><%= new Date().toLocaleDateString()%></h3>
+  
+  <div id="task-listing">
+    <ul>
+      <% tasks.forEach(function(task) { %>
+        <li>
+          <h2>Task 1: <%= task.task1 %></h2>
+        </li>
+        <li>
+          <h2>Task 2: <%= task.task2 %></h2>
+        </li>
+        <li>
+          <h2>Task 3: <%= task.task3 %></h2>
+        </li>
+        <li>
+          <h2>Task 4: <%= task.task4 %></h2>
+        </li>
+        <li>
+          <h2>Task 5: <%= task.task5 %></h2>
+        </li>
+        <% }); %>
+    </ul>
+    <p><%= tasks.notes %></p>
+  </div>
 
-
-<%- include('../partials/footer') %>
+  <%- include('../partials/footer') %>

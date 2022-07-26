@@ -9,7 +9,8 @@ module.exports = {
 };
 
 function index(req, res) {
-  Task.find({user: req.user._id}, function(err, tasks) {
+  Task.find({}, function(err, tasks) {
+    console.log(tasks);
     res.render('tasks/index', {tasks});
   });
 }
