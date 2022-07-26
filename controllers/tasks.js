@@ -22,5 +22,6 @@ function create (req, res) {
   var task = new Task(req.body);
   task.save(function(err) {
     console.log(task);
+    res.redirect('/tasks');
   });
 }
