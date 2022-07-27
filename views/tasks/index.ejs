@@ -1,31 +1,50 @@
 <%- include ('../partials/tasks-partials/index-header') %>
-  <h1 id="task-heading"><%= user.name %>'s Daily Tasks</h1>
-  <h3><%= new Date().toLocaleDateString()%></h3>
+  <h1 id="task-heading">
+    <%= user.name %>'s Daily Tasks
+  </h1>
+  <h3>
+    <%= new Date().toLocaleDateString()%>
+  </h3>
   <div id="task-listing">
     <ul>
       <% tasks.forEach(function(t) { %>
         <li>
-          <h2>Task 1: <%= t.task0.title %></h2>
+          <h2>Task 1: <%= t.task0.title %>
+          </h2>
           <a href="/tasks/<%= t.task0._id %>/edit"><button>Edit Task</button></a>
         </li>
         <li>
-          <h2>Task 2: <%= t.task1.title %></h2>
+          <h2>Task 2: <%= t.task1.title %>
+          </h2>
           <a href="/tasks/<%= t.task1._id %>/edit"><button>Edit Task</button></a>
         </li>
         <li>
-          <h2>Task 3: <%= t.task2.title %></h2>
+          <h2>Task 3: <%= t.task2.title %>
+          </h2>
           <a href="/tasks/<%= t.task2._id %>/edit"><button>Edit Task</button></a>
         </li>
         <li>
-          <h2>Task 4: <%= t.task3.title %></h2>
+          <h2>Task 4: <%= t.task3.title %>
+          </h2>
           <a href="/tasks/<%= t.task3._id %>/edit"><button>Edit Task</button></a>
         </li>
         <li>
-          <h2>Task 5: <%= t.task4.title %></h2>
+          <h2>Task 5: <%= t.task4.title %>
+          </h2>
           <a href="/tasks/<%= t.task4._id %>/edit"><button>Edit Task</button></a>
         </li>
-        <p><%= t.notes %></p>
         <% }); %>
+          <p>
+          <% tasks[0].notes.forEach(function(note) { %>
+            <ul>
+              <li>
+                <h5>
+                  <%= note %>
+                </h5>
+              </li>
+            </ul>
+          <% }); %>
+          </p>
     </ul>
   </div>
 

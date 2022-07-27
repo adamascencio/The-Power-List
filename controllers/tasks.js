@@ -23,7 +23,7 @@ function show(req, res) {
 
 function index(req, res) {
   Task.find({user: req.user._id}, function(err, tasks) {
-    res.render('tasks/calendar', {tasks});
+    res.render('tasks/calendar', {tasks, month, year});
   });
 }
 
@@ -56,7 +56,9 @@ function create (req, res) {
     title: req.body.title[4],
     tag: req.body.tag[4]
   };
-  object.notes = req.body.notes;
+  if (req.body.notes !== '' && req.body.notes !== null) {
+   object.notes = req.body.notes;
+  }
   object.date = req.body.date;
   var task = new Task(object);
   task.user = req.user._id;
@@ -79,7 +81,7 @@ function edit(req, res) {
 
 function update(req, res) {
   Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
-    if (req.body.notes !== '') tasks.notes.push(req.body.notes);
+    if (req.body.notes !== '' && req.body.notes !== null) tasks.notes.push(req.body.notes);
     for (let i = 0; i < 5; i++) {
       if (tasks[`task${i}`]._id == req.params.id) {
         tasks[`task${i}`].title = req.body.title;
