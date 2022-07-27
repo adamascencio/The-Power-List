@@ -7,7 +7,10 @@ const tasksCtrl = require('../controllers/tasks');
 router.get('/', tasksCtrl.index);
 // GET /tasks/new (new functionality - show form for new tasks)
 router.get('/new', tasksCtrl.new);
+// GET /tasks/:id (edit functionality - show form for editing tasks)
+router.get('/:id/edit', tasksCtrl.edit);
 // POST /tasks (create functionality - create new tasks)
 router.post('/', tasksCtrl.create);
+
 
 module.exports = router;
