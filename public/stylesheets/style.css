@@ -12,6 +12,10 @@ a {
   color: #00B7FF;
 }
 
+h1 {
+  margin-top: 30px;
+}
+
 .navbar {
   justify-content: flex-start;
   gap: 3%;
@@ -77,10 +81,6 @@ ul > li {
   height: 45px;
   border-radius: 50%;
   margin-right: 5px;
-}
-
-#task-heading {
-  margin-top: 30px;
 }
 
 #task-listing {

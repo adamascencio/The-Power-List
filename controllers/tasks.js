@@ -3,6 +3,7 @@ const Task = require('../models/task');
 
 
 module.exports = {
+  show,
   index, 
   new: newTask,
   create,
@@ -14,9 +15,15 @@ const month = new Date().getMonth()+1;
 const day = new Date().getDate();
 const year = new Date().getFullYear();
 
-function index(req, res) {
+function show(req, res) {
   Task.find({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
     res.render('tasks/index', {tasks});
+  });
+}
+
+function index(req, res) {
+  Task.find({user: req.user._id}, function(err, tasks) {
+    res.render('tasks/calendar', {tasks});
   });
 }
 
@@ -72,11 +79,11 @@ function edit(req, res) {
 
 function update(req, res) {
   Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
+    if (req.body.notes !== '') tasks.notes.push(req.body.notes);
     for (let i = 0; i < 5; i++) {
       if (tasks[`task${i}`]._id == req.params.id) {
         tasks[`task${i}`].title = req.body.title;
         tasks[`task${i}`].tag = req.body.tag;
-        tasks.notes.push(req.body.notes);
         tasks[`task${i}`].done = req.body.done;
         tasks.save(function(err, task) {
           res.redirect('/tasks');
