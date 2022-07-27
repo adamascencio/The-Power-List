@@ -28,7 +28,7 @@ const taskSchema = new Schema ({
     type: Date,
     default: function() {return new Date();}
   },
-  notes: String,
+  notes: [String],
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'

@@ -6,25 +6,25 @@ module.exports = {
   index, 
   new: newTask,
   create,
-  edit
+  edit,
+  update
 };
 
+const month = new Date().getMonth()+1;
+const day = new Date().getDate();
+const year = new Date().getFullYear();
+
 function index(req, res) {
-  const month = new Date().getMonth()+1;
-  const day = new Date().getDate();
-  const year = new Date().getFullYear();
   Task.find({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
     res.render('tasks/index', {tasks});
   });
 }
 
 function newTask(req, res) {
-  const month = new Date().getMonth()+1;
-  const day = new Date().getDate();
-  const year = new Date().getFullYear();
-  const today = new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0);
-  console.log(today);
-  res.render('tasks/new');
+  const newMonth = ('0' + (new Date().getMonth()+1)).slice(-2);
+  const newDay = ('0' + new Date().getDate()).slice(-2);
+  const today = `${year}-${newMonth}-${newDay}`;
+  res.render('tasks/new', {today});
 }
 
 function create (req, res) {
@@ -60,16 +60,27 @@ function create (req, res) {
 }
 
 function edit(req, res) {
-  // const task = Task.findOne({_id: req.params.id, user: req.user._id}, function(err, task) {
-  //   res.render('tasks/edit', {task});
-  // });
-  const month = new Date().getMonth()+1;
-  const day = new Date().getDate();
-  const year = new Date().getFullYear();
   Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
     for (let i = 0; i < 5; i++) {
       if (tasks[`task${i}`]._id == req.params.id) {
         res.render('tasks/edit', {task: tasks[`task${i}`]});
+        break;
+      }
+    }
+  });
+}
+
+function update(req, res) {
+  Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
+    for (let i = 0; i < 5; i++) {
+      if (tasks[`task${i}`]._id == req.params.id) {
+        tasks[`task${i}`].title = req.body.title;
+        tasks[`task${i}`].tag = req.body.tag;
+        tasks.notes.push(req.body.notes);
+        tasks[`task${i}`].done = req.body.done;
+        tasks.save(function(err, task) {
+          res.redirect('/tasks');
+        });
         break;
       }
     }

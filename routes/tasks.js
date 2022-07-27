@@ -9,6 +9,8 @@ router.get('/', tasksCtrl.index);
 router.get('/new', tasksCtrl.new);
 // GET /tasks/:id (edit functionality - show form for editing tasks)
 router.get('/:id/edit', tasksCtrl.edit);
+// PUT /tasks/:id (update functionality - update a task)
+router.put('/:id', tasksCtrl.update);
 // POST /tasks (create functionality - create new tasks)
 router.post('/', tasksCtrl.create);
 
