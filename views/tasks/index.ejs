@@ -7,23 +7,23 @@
     <ul>
       <% tasks.forEach(function(task) { %>
         <li>
-          <h2>Task 1: <%= task.task1 %></h2>
+          <h2>Task 1: <%= task.task0.title %></h2>
         </li>
         <li>
-          <h2>Task 2: <%= task.task2 %></h2>
+          <h2>Task 2: <%= task.task1.title %></h2>
         </li>
         <li>
-          <h2>Task 3: <%= task.task3 %></h2>
+          <h2>Task 3: <%= task.task2.title %></h2>
         </li>
         <li>
-          <h2>Task 4: <%= task.task4 %></h2>
+          <h2>Task 4: <%= task.task3.title %></h2>
         </li>
         <li>
-          <h2>Task 5: <%= task.task5 %></h2>
+          <h2>Task 5: <%= task.task4.title %></h2>
         </li>
+        <p><%= task.notes %></p>
         <% }); %>
     </ul>
-    <p><%= tasks.notes %></p>
   </div>
 
   <%- include('../partials/footer') %>

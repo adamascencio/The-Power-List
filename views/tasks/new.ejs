@@ -2,13 +2,52 @@
   <h1>Add New Tasks</h1>
   <form id="new-tasks-form" action="/tasks" method="POST">
     <div class="grid">
+      <input type="date" name="date">
       <div class="form-group">
         <label>Enter your 5 critical tasks:</label>
-        <input type="text" class="form-control task-margin" name="task1" placeholder="Task 1" required>
-        <input type="text" class="form-control task-margin" name="task2" placeholder="Task 2" required>
-        <input type="text" class="form-control task-margin" name="task3" placeholder="Task 3" required>
-        <input type="text" class="form-control task-margin" name="task4" placeholder="Task 4" required>
-        <input type="text" class="form-control task-margin" name="task5" placeholder="Task 5" required>
+        <input type="text" class="form-control task-margin" name="title" placeholder="Task 1" required>
+        <input type="text" class="form-control task-margin" name="title" placeholder="Task 2" required>
+        <input type="text" class="form-control task-margin" name="title" placeholder="Task 3" required>
+        <input type="text" class="form-control task-margin" name="title" placeholder="Task 4" required>
+        <input type="text" class="form-control task-margin" name="title" placeholder="Task 5" required>
+      </div>
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <select class="form-control task-margin" id="category" name="tag">
+          <option value="" disabled>Select a category</option>
+          <option value="Work">Work</option>
+          <option value="School">Personal</option>
+          <option value="Family">School</option>
+          <option value="Other">Other</option>
+        </select>
+        <select class="form-control task-margin" id="category" name="tag">
+          <option value="" disabled>Select a category</option>
+          <option value="Work">Work</option>
+          <option value="School">Personal</option>
+          <option value="Family">School</option>
+          <option value="Other">Other</option>
+        </select>
+        <select class="form-control task-margin" id="category" name="tag">
+          <option value="" disabled>Select a category</option>
+          <option value="Work">Work</option>
+          <option value="School">Personal</option>
+          <option value="Family">School</option>
+          <option value="Other">Other</option>
+        </select>
+        <select class="form-control task-margin" id="category" name="tag">
+          <option value="" disabled>Select a category</option>
+          <option value="Work">Work</option>
+          <option value="School">Personal</option>
+          <option value="Family">School</option>
+          <option value="Other">Other</option>
+        </select>
+        <select class="form-control task-margin" id="category" name="tag">
+          <option value="" disabled>Select a category</option>
+          <option value="Work">Work</option>
+          <option value="School">Personal</option>
+          <option value="Family">School</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
       <div class="form-group grid-span">
         <label for="notes">Notes:</label>

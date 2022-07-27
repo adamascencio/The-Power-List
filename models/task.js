@@ -1,56 +1,34 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const taskSchema = new Schema ({
-  task1: {
+const baseTaskSchema = new Schema({
+  title: {
     type: String,
-    required: true,
-    done: {
-      type: Boolean,
-      default: false
-    }
+    required: true
   }, 
-  task2: {
+  tag: {
     type: String,
-    required: true,
-    done: {
-      type: Boolean,
-      default: false
-    }
-  },
-  task3: {  
-    type: String,
-    required: true,
-    done: {
-      type: Boolean,
-      default: false
-    }
-  },
-  task4: {
-    type: String,
-    required: true,
-    done: {
-      type: Boolean,
-      default: false
-    }
-  },
-  task5: { 
-    type: String,
-    required: true,
-    done: {
-      type: Boolean,
-      default: false
-    }
-  },
+    enum: ['Work', 'Personal', 'School', 'Other'],
+    required: true
+  }, 
+  done: {
+    type: Boolean,
+    default: false
+  } 
+});
+
+const taskSchema = new Schema ({
+  task0: baseTaskSchema,
+  task1: baseTaskSchema,
+  task2: baseTaskSchema,
+  task3: baseTaskSchema,
+  task4: baseTaskSchema,
+  
   date: {
     type: Date,
     default: function() {return new Date();}
   },
   notes: String,
-  tag: {
-    type: Schema.Types.ObjectId,
-    ref: 'Tag'
-  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -59,3 +37,4 @@ const taskSchema = new Schema ({
 {timestamps: true});
 
 module.exports = mongoose.model('Task', taskSchema);
+
