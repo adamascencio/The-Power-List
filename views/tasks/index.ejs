@@ -35,11 +35,13 @@
         </li>
         <% }); %>
           <p>
-          <% tasks[0].notes.forEach(function(note) { %>
+          <% tasks[0].notes.forEach(function(note, idx) { %>
             <ul>
               <li>
                 <h5>
-                  <%= note %>
+                  <form action="/tasks/<%= tasks[0].notes[idx] %>?_method=DELETE" method="POST">
+                    <button type="submit">x</button><%= note %>
+                  </form>
                 </h5>
               </li>
             </ul>

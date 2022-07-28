@@ -8,7 +8,8 @@ module.exports = {
   new: newTask,
   create,
   edit,
-  update
+  update,
+  delete: deleteNote
 };
 
 const month = new Date().getMonth()+1;
@@ -87,6 +88,20 @@ function update(req, res) {
         tasks[`task${i}`].title = req.body.title;
         tasks[`task${i}`].tag = req.body.tag;
         tasks[`task${i}`].done = req.body.done;
+        tasks.save(function(err, task) {
+          res.redirect('/tasks');
+        });
+        break;
+      }
+    }
+  });
+}
+
+function deleteNote(req, res) {
+  Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
+    for (let i = 0; i < 5; i++) {
+      if (tasks[`task${i}`]._id == req.params.id) {
+        tasks[`task${i}`].notes.splice(req.params.note, 1);
         tasks.save(function(err, task) {
           res.redirect('/tasks');
         });
