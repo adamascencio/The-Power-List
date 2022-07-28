@@ -15,6 +15,7 @@ router.get('/:id/edit', tasksCtrl.edit);
 router.put('/:id', tasksCtrl.update);
 // POST /tasks (create functionality - create new tasks)
 router.post('/', tasksCtrl.create);
-
+// DELETE /tasks/:id (delete functionality - delete a note)
+router.delete('/:id', tasksCtrl.delete);
 
 module.exports = router;

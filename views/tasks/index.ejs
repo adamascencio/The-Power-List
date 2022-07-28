@@ -1,53 +1,46 @@
 <%- include ('../partials/tasks-partials/index-header') %>
   <h1 id="task-heading">
-    <%= user.name %>'s Daily Tasks
+    <%= user.name.split(' ')[0] %>'s Daily Tasks
   </h1>
   <h3>
     <%= new Date().toLocaleDateString()%>
   </h3>
   <div id="task-listing">
     <ul>
-      <% tasks.forEach(function(t) { %>
-        <li>
-          <h2>Task 1: <%= t.task0.title %>
-          </h2>
-          <a href="/tasks/<%= t.task0._id %>/edit"><button>Edit Task</button></a>
-        </li>
-        <li>
-          <h2>Task 2: <%= t.task1.title %>
-          </h2>
-          <a href="/tasks/<%= t.task1._id %>/edit"><button>Edit Task</button></a>
-        </li>
-        <li>
-          <h2>Task 3: <%= t.task2.title %>
-          </h2>
-          <a href="/tasks/<%= t.task2._id %>/edit"><button>Edit Task</button></a>
-        </li>
-        <li>
-          <h2>Task 4: <%= t.task3.title %>
-          </h2>
-          <a href="/tasks/<%= t.task3._id %>/edit"><button>Edit Task</button></a>
-        </li>
-        <li>
-          <h2>Task 5: <%= t.task4.title %>
-          </h2>
-          <a href="/tasks/<%= t.task4._id %>/edit"><button>Edit Task</button></a>
-        </li>
-        <% }); %>
-          <p>
-          <% tasks[0].notes.forEach(function(note, idx) { %>
-            <ul>
-              <li>
-                <h5>
-                  <form action="/tasks/<%= tasks[0].notes[idx] %>?_method=DELETE" method="POST">
-                    <button type="submit">x</button><%= note %>
-                  </form>
-                </h5>
-              </li>
-            </ul>
-          <% }); %>
-          </p>
+      <li>
+        <h3>Task 1: <%= tasks[0].task0.title %></h3>
+        <a href="/tasks/<%= tasks[0].task0._id %>/edit"><button>Edit Task</button></a>
+      </li>
+      <li>
+        <h3>Task 2: <%= tasks[0].task1.title %></h3>
+        <a href="/tasks/<%= tasks[0].task1._id %>/edit"><button>Edit Task</button></a>
+      </li>
+      <li>
+        <h3>Task 3: <%= tasks[0].task2.title %></h3>
+        <a href="/tasks/<%= tasks[0].task2._id %>/edit"><button>Edit Task</button></a>
+      </li>
+      <li>
+        <h3>Task 4: <%= tasks[0].task3.title %></h3>
+        <a href="/tasks/<%= tasks[0].task3._id %>/edit"><button>Edit Task</button></a>
+      </li>
+      <li>
+        <h3>Task 5: <%= tasks[0].task4.title %></h3>
+        <a href="/tasks/<%= tasks[0].task4._id %>/edit"><button>Edit Task</button></a>
+      </li>
     </ul>
+    <p>
+    <% tasks[0].notes.forEach(function(note, idx) { %>
+      <ul>
+        <li>
+          <h5>
+            <form action="/tasks/<%= tasks[0]._id %>?_method=DELETE" method="POST">
+              <button type="submit">x</button><%= note %>
+            </form>
+          </h5>
+        </li>
+      </ul>
+    <% }); %>
+    </p>
   </div>
 
   <%- include('../partials/footer') %>

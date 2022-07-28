@@ -98,15 +98,11 @@ function update(req, res) {
 }
 
 function deleteNote(req, res) {
-  Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
-    for (let i = 0; i < 5; i++) {
-      if (tasks[`task${i}`]._id == req.params.id) {
-        tasks[`task${i}`].notes.splice(req.params.note, 1);
-        tasks.save(function(err, task) {
-          res.redirect('/tasks');
-        });
-        break;
-      }
-    }
+  Task.findOne({user: req.user._id, _id: req.params.id}, function(err, task) {
+    console.log(req.params);
+    task.notes.splice(req.params.note, 1);
+    task.save(function(err, task) {
+      res.redirect('/tasks');
+    });
   });
 }
