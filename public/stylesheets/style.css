@@ -76,6 +76,10 @@ ul > li {
   text-align: left;
 }
 
+.card-text {
+  font-size: 1.5rem;
+}
+
 #avatar {
   width: 45px;
   height: 45px;
@@ -140,12 +144,12 @@ ul > li {
 
 /* Calendar Styles */
 #calendar {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 50px);
-  gap: 10px 10px;
+  gap: 20px;
   border: 3px solid black;
   justify-items: center;
   justify-content: center;
@@ -156,6 +160,7 @@ ul > li {
 
 .grid-bg-color {
   background-color: black;
-  width: 80%;
-  margin: 0 auto;
+  width: 60vw;
+  max-width: 700px;
+  margin: 30px auto;
 }

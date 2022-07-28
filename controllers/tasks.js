@@ -60,11 +60,10 @@ function create (req, res) {
   if (req.body.notes !== '' && req.body.notes !== null) {
    object.notes = req.body.notes;
   }
-  object.date = req.body.date;
+  object.date = new Date(req.body.date);
   var task = new Task(object);
   task.user = req.user._id;
   task.save(function(err, task) {
-    console.log(task);
     res.redirect('/tasks');
   });
 }
@@ -99,7 +98,6 @@ function update(req, res) {
 
 function deleteNote(req, res) {
   Task.findOne({user: req.user._id, _id: req.params.id}, function(err, task) {
-    console.log(req.params);
     task.notes.splice(req.params.note, 1);
     task.save(function(err, task) {
       res.redirect('/tasks');

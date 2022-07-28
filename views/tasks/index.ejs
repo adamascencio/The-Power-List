@@ -8,24 +8,49 @@
   <div id="task-listing">
     <ul>
       <li>
-        <h3>Task 1: <%= tasks[0].task0.title %></h3>
-        <a href="/tasks/<%= tasks[0].task0._id %>/edit"><button>Edit Task</button></a>
+        <div class="card text-center" style="width: 18rem;">
+          <div class="card-body">
+            <h3>Task 1</h3>
+            <p class="card-text"><%= tasks[0].task0.title %></p>
+            <a href="/tasks/<%= tasks[0].task0._id %>/edit" class="btn btn-primary">Edit Task</a>
+          </div>
+        </div>
       </li>
       <li>
-        <h3>Task 2: <%= tasks[0].task1.title %></h3>
-        <a href="/tasks/<%= tasks[0].task1._id %>/edit"><button>Edit Task</button></a>
+        <div class="card text-center" style="width: 18rem;">
+          <div class="card-body">
+            <h3>Task 2</h3>
+            <p class="card-text"><%= tasks[0].task1.title %></p>
+            <a href="/tasks/<%= tasks[0].task1._id %>/edit" class="btn btn-primary">Edit Task</a>
+          </div>
+        </div>
       </li>
       <li>
-        <h3>Task 3: <%= tasks[0].task2.title %></h3>
-        <a href="/tasks/<%= tasks[0].task2._id %>/edit"><button>Edit Task</button></a>
+        <div class="card text-center" style="width: 18rem;">
+          <div class="card-body">
+            <h3>Task 3</h3>
+            <p class="card-text"><%= tasks[0].task2.title %></p>
+            <a href="/tasks/<%= tasks[0].task2._id %>/edit" class="btn btn-primary">Edit Task</a>
+          </div>
+        </div>
       </li>
       <li>
-        <h3>Task 4: <%= tasks[0].task3.title %></h3>
-        <a href="/tasks/<%= tasks[0].task3._id %>/edit"><button>Edit Task</button></a>
+        <div class="card text-center" style="width: 18rem;">
+          <div class="card-body">
+            <h3>Task 4</h3>
+            <p class="card-text"><%= tasks[0].task3.title %></p>
+            <a href="/tasks/<%= tasks[0].task3._id %>/edit" class="btn btn-primary">Edit Task</a>
+          </div>
+        </div>
       </li>
       <li>
-        <h3>Task 5: <%= tasks[0].task4.title %></h3>
-        <a href="/tasks/<%= tasks[0].task4._id %>/edit"><button>Edit Task</button></a>
+        <div class="card text-center" style="width: 18rem;">
+          <div class="card-body">
+            <h3>Task 5</h3>
+            <p class="card-text"><%= tasks[0].task4.title %></p>
+            <a href="/tasks/<%= tasks[0].task4._id %>/edit" class="btn btn-primary">Edit Task</a>
+          </div>
+        </div>
       </li>
     </ul>
     <p>
@@ -34,7 +59,7 @@
         <li>
           <h5>
             <form action="/tasks/<%= tasks[0]._id %>?_method=DELETE" method="POST">
-              <button type="submit">x</button><%= note %>
+              <button type="submit" class="btn btn-danger">x</button><span><%= note %></span>
             </form>
           </h5>
         </li>
