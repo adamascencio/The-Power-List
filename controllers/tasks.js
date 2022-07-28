@@ -9,6 +9,7 @@ module.exports = {
   create,
   edit,
   update,
+  updateDone,
   delete: deleteNote
 };
 
@@ -88,6 +89,22 @@ function update(req, res) {
         tasks[`task${i}`].tag = req.body.tag;
         tasks[`task${i}`].done = req.body.done;
         tasks.save(function(err, task) {
+          res.redirect('/tasks');
+        });
+        break;
+      }
+    }
+  });
+}
+
+function updateDone(req, res) {
+  Task.findOne({user: req.user._id, _id: req.params.id}, function(err, task) {
+    console.log(req.body.done);
+    for(let i = 0; i < 5; i++) {
+      if (task[`task${i}`]._id == req.params.taskId) {
+        task[`task${i}`].done = req.body.done === 'true' ? true : false;
+        task.save(function(err, task) {
+          console.log(task);
           res.redirect('/tasks');
         });
         break;

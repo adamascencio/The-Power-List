@@ -5,67 +5,126 @@
   <h3>
     <%= new Date().toLocaleDateString()%>
   </h3>
-  <div id="task-listing">
-    <ul>
-      <li>
-        <div class="card text-center" style="width: 18rem;">
-          <div class="card-body">
-            <h3>Task 1</h3>
-            <p class="card-text"><%= tasks[0].task0.title %></p>
-            <a href="/tasks/<%= tasks[0].task0._id %>/edit" class="btn btn-primary">Edit Task</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="card text-center" style="width: 18rem;">
-          <div class="card-body">
-            <h3>Task 2</h3>
-            <p class="card-text"><%= tasks[0].task1.title %></p>
-            <a href="/tasks/<%= tasks[0].task1._id %>/edit" class="btn btn-primary">Edit Task</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="card text-center" style="width: 18rem;">
-          <div class="card-body">
-            <h3>Task 3</h3>
-            <p class="card-text"><%= tasks[0].task2.title %></p>
-            <a href="/tasks/<%= tasks[0].task2._id %>/edit" class="btn btn-primary">Edit Task</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="card text-center" style="width: 18rem;">
-          <div class="card-body">
-            <h3>Task 4</h3>
-            <p class="card-text"><%= tasks[0].task3.title %></p>
-            <a href="/tasks/<%= tasks[0].task3._id %>/edit" class="btn btn-primary">Edit Task</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="card text-center" style="width: 18rem;">
-          <div class="card-body">
-            <h3>Task 5</h3>
-            <p class="card-text"><%= tasks[0].task4.title %></p>
-            <a href="/tasks/<%= tasks[0].task4._id %>/edit" class="btn btn-primary">Edit Task</a>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <p>
-    <% tasks[0].notes.forEach(function(note, idx) { %>
-      <ul>
+  <div>
+    <% if(tasks.length === 0) { %>
+      <h2>You haven't added any tasks for today</h2>
+    <% } else { %>
+      <ul id="task-listing">
         <li>
-          <h5>
-            <form action="/tasks/<%= tasks[0]._id %>?_method=DELETE" method="POST">
-              <button type="submit" class="btn btn-danger">x</button><span><%= note %></span>
-            </form>
-          </h5>
+          <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+              <h3>Task 1</h3>
+              <p class="card-text"><%= tasks[0].task0.title %></p>
+              <a href="/tasks/<%= tasks[0].task0._id %>/edit" class="btn btn-primary">Edit Task</a>
+              <% if(tasks[0].task0.done === false) { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task0._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="true">
+                  <button type="submit" class=" btn btn-primary">Completed</button>
+                </form>
+              <% } else { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task0._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="false">
+                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
         </li>
+        <li>
+          <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+              <h3>Task 2</h3>
+              <p class="card-text"><%= tasks[0].task1.title %></p>
+              <a href="/tasks/<%= tasks[0].task1._id %>/edit" class=" btn btn-primary">Edit Task</a>
+              <% if(tasks[0].task1.done===false) { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task1._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="true">
+                  <button type="submit" class=" btn btn-primary">Completed</button>
+                </form>
+              <% } else { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task1._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="false">
+                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+              <h3>Task 3</h3>
+              <p class="card-text"><%= tasks[0].task2.title %></p>
+              <a href="/tasks/<%= tasks[0].task2._id %>/edit" class=" btn btn-primary">Edit Task</a>
+              <% if(tasks[0].task2.done===false) { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task2._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="true">
+                  <button type="submit" class=" btn btn-primary">Completed</button>
+                </form>
+              <% } else { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task2._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="false">
+                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+              <h3>Task 4</h3>
+              <p class="card-text"><%= tasks[0].task3.title %></p>
+              <a href="/tasks/<%= tasks[0].task3._id %>/edit" class=" btn btn-primary">Edit Task</a>
+              <% if(tasks[0].task3.done===false) { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task3._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="true">
+                  <button type="submit" class=" btn btn-primary">Completed</button>
+                </form>
+              <% } else { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task3._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="false">
+                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </li>
+        <li class="span2">
+          <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+              <h3>Task 5</h3>
+              <p class="card-text"><%= tasks[0].task4.title %></p>
+              <a href="/tasks/<%= tasks[0].task4._id %>/edit" class=" btn btn-primary">Edit Task</a>
+              <% if(tasks[0].task4.done===false) { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task4._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="true">
+                  <button type="submit" class=" btn btn-primary">Completed</button>
+                </form>
+              <% } else { %>
+                <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task4._id%>?_method=PUT" method="POST">
+                  <input type="hidden" name="done" value="false">
+                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </li>
+        <% tasks[0].notes.forEach(function(note, idx) { %>
+          <ul>
+            <li>
+              <h5>
+                <form action="/tasks/<%= tasks[0]._id %>?_method=DELETE" method="POST">
+                  <button type="submit" class=" btn btn-danger">x</button><span>
+                    <%= note %>
+                  </span>
+                </form>
+              </h5>
+            </li>
+          </ul>
+        <% }); %>
       </ul>
-    <% }); %>
-    </p>
+    <% } %>
   </div>
 
   <%- include('../partials/footer') %>
