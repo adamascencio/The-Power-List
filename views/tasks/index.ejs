@@ -16,7 +16,7 @@
               <h3>Task 1</h3>
               <p class="card-text"><%= tasks[0].task0.title %></p>
               <a href="/tasks/<%= tasks[0].task0._id %>/edit" class="btn btn-primary">Edit Task</a>
-              <% if(tasks[0].task0.done === false) { %>
+              <% if(tasks[0].task0.done === true) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task0._id%>?_method=PUT" method="POST">
                   <div class="btn-flex">
                     <input type="hidden" name="done" value="true">
@@ -40,7 +40,7 @@
               <h3>Task 2</h3>
               <p class="card-text"><%= tasks[0].task1.title %></p>
               <a href="/tasks/<%= tasks[0].task1._id %>/edit" class=" btn btn-primary">Edit Task</a>
-              <% if(tasks[0].task1.done===false) { %>
+              <% if(tasks[0].task1.done===true) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task1._id%>?_method=PUT" method="POST">
                   <div class="btn-flex">
                     <input type="hidden" name="done" value="true">
@@ -64,7 +64,7 @@
               <h3>Task 3</h3>
               <p class="card-text"><%= tasks[0].task2.title %></p>
               <a href="/tasks/<%= tasks[0].task2._id %>/edit" class=" btn btn-primary">Edit Task</a>
-              <% if(tasks[0].task2.done===false) { %>
+              <% if(tasks[0].task2.done===true) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task2._id%>?_method=PUT" method="POST">
                   <div class="btn-flex">
                     <input type="hidden" name="done" value="true">
@@ -88,7 +88,7 @@
               <h3>Task 4</h3>
               <p class="card-text"><%= tasks[0].task3.title %></p>
               <a href="/tasks/<%= tasks[0].task3._id %>/edit" class=" btn btn-primary">Edit Task</a>
-              <% if(tasks[0].task3.done===false) { %>
+              <% if(tasks[0].task3.done===true) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task3._id%>?_method=PUT" method="POST">
                   <div class="btn-flex">
                     <input type="hidden" name="done" value="true">
@@ -112,7 +112,7 @@
               <h3>Task 5</h3>
               <p class="card-text"><%= tasks[0].task4.title %></p>
               <a href="/tasks/<%= tasks[0].task4._id %>/edit" class=" btn btn-primary">Edit Task</a>
-              <% if(tasks[0].task4.done===false) { %>
+              <% if(tasks[0].task4.done===true) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task4._id%>?_method=PUT" method="POST">
                   <div class="btn-flex">
                     <input type="hidden" name="done" value="true">
