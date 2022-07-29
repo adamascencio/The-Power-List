@@ -10,7 +10,7 @@
       <h2>You haven't added any tasks for today</h2>
     <% } else { %>
       <ul id="task-listing">
-        <li>
+        <li class="justify-card">
           <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
               <h3>Task 1</h3>
@@ -18,19 +18,23 @@
               <a href="/tasks/<%= tasks[0].task0._id %>/edit" class="btn btn-primary">Edit Task</a>
               <% if(tasks[0].task0.done === false) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task0._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="true">
-                  <button type="submit" class=" btn btn-primary">Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="true">
+                    <button type="submit" class=" btn btn-success">✅ Completed</button>
+                  </div>
                 </form>
               <% } else { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task0._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="false">
-                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="false">
+                    <button type="submit" class=" btn btn-danger">👎🏼 Not Completed</button>
+                  </div>
                 </form>
               <% } %>
             </div>
           </div>
         </li>
-        <li>
+        <li class="justify-start">
           <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
               <h3>Task 2</h3>
@@ -38,19 +42,23 @@
               <a href="/tasks/<%= tasks[0].task1._id %>/edit" class=" btn btn-primary">Edit Task</a>
               <% if(tasks[0].task1.done===false) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task1._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="true">
-                  <button type="submit" class=" btn btn-primary">Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="true">
+                    <button type="submit" class=" btn btn-success">✅ Completed</button>
+                  </div>
                 </form>
               <% } else { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task1._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="false">
-                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="false">
+                    <button type="submit" class=" btn btn-danger">👎🏼 Not Completed</button>
+                  </div>
                 </form>
               <% } %>
             </div>
           </div>
         </li>
-        <li>
+        <li class="justify-card">
           <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
               <h3>Task 3</h3>
@@ -58,19 +66,23 @@
               <a href="/tasks/<%= tasks[0].task2._id %>/edit" class=" btn btn-primary">Edit Task</a>
               <% if(tasks[0].task2.done===false) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task2._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="true">
-                  <button type="submit" class=" btn btn-primary">Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="true">
+                    <button type="submit" class=" btn btn-success">✅ Completed</button>
+                  </div>
                 </form>
               <% } else { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task2._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="false">
-                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="false">
+                    <button type="submit" class=" btn btn-danger">👎🏼 Not Completed</button>
+                  </div>
                 </form>
               <% } %>
             </div>
           </div>
         </li>
-        <li>
+        <li class="justify-start">
           <div class="card text-center" style="width: 18rem;">
             <div class="card-body">
               <h3>Task 4</h3>
@@ -78,13 +90,17 @@
               <a href="/tasks/<%= tasks[0].task3._id %>/edit" class=" btn btn-primary">Edit Task</a>
               <% if(tasks[0].task3.done===false) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task3._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="true">
-                  <button type="submit" class=" btn btn-primary">Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="true">
+                    <button type="submit" class=" btn btn-success">✅ Completed</button>
+                  </div>
                 </form>
               <% } else { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task3._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="false">
-                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="false">
+                    <button type="submit" class=" btn btn-danger">👎🏼 Not Completed</button>
+                  </div>  
                 </form>
               <% } %>
             </div>
@@ -98,33 +114,36 @@
               <a href="/tasks/<%= tasks[0].task4._id %>/edit" class=" btn btn-primary">Edit Task</a>
               <% if(tasks[0].task4.done===false) { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task4._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="true">
-                  <button type="submit" class=" btn btn-primary">Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="true">
+                    <button type="submit" class=" btn btn-success">✅ Completed</button>
+                  </div>
                 </form>
               <% } else { %>
                 <form action="/tasks/<%= tasks[0]._id %>/task/<%=tasks[0].task4._id%>?_method=PUT" method="POST">
-                  <input type="hidden" name="done" value="false">
-                  <button type="submit" class=" btn btn-primary">Not Completed</button>
+                  <div class="btn-flex">
+                    <input type="hidden" name="done" value="false">
+                    <button type="submit" class=" btn btn-danger">👎🏼 Not Completed</button>
+                  </div>
                 </form>
               <% } %>
             </div>
           </div>
         </li>
+      </div>
+      <h3 id="notes-heading">Daily Notes</h3>
         <% tasks[0].notes.forEach(function(note, idx) { %>
           <ul>
-            <li>
-              <h5>
-                <form action="/tasks/<%= tasks[0]._id %>?_method=DELETE" method="POST">
-                  <button type="submit" class=" btn btn-danger">x</button><span>
-                    <%= note %>
-                  </span>
-                </form>
-              </h5>
+            <li>           
+              <form action="/tasks/<%= tasks[0]._id %>?_method=DELETE" method="POST">
+                <h5 class="btn-grid">
+                  <button type="submit" class="btn-close justify-card" aria-label="Close"></button>
+                  <%= note %>
+                </h5>
+              </form>
             </li>
           </ul>
         <% }); %>
-      </ul>
     <% } %>
-  </div>
 
   <%- include('../partials/footer') %>

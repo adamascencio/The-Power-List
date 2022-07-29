@@ -6,8 +6,8 @@
     <label for="title">Enter Task Update:</label>
     <input type="text" class="form-control" id="title" name="title" value="<%= task.title %>">
   </div>
-  <div class="form-group">
-    <label for="tag-update">Category</label>
+  <div class="form-group align-self">
+    <label for="tag-update">Category:</label>
     <select class="form-control" id="tag-update" name="tag">
       <option value="" disabled>Select a category</option>
       <option value="Work" <% if (task.tag==="Work" ) { %> selected <% } %>>Work</option>
@@ -19,10 +19,6 @@
   <div class="form-group">
     <label for="notes">Notes:</label>
     <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="done">Completed?</label>
-    <input type="checkbox" id="done" name="done" value="true" <% if (task.done) { %> checked <% } %>> 
   </div>
   <button id="submit-update" type="submit" class="btn btn-primary">Submit</button>
 </form>
