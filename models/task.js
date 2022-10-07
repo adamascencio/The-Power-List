@@ -23,7 +23,10 @@ const taskSchema = new Schema ({
   task2: baseTaskSchema,
   task3: baseTaskSchema,
   task4: baseTaskSchema,
-  
+  allTasksCompleted: {
+    type: Boolean,
+    default: false
+  },
   date: {
     type: Date,
     default: function() {return new Date();}

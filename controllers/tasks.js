@@ -26,6 +26,8 @@ function show(req, res) {
 function index(req, res) {
   Task.find({user: req.user._id}, function(err, tasks) {
     res.render('tasks/calendar', {tasks, month, year});
+    console.log('Tasks: ', tasks);
+    console.log('Year: ', year);
   });
 }
 

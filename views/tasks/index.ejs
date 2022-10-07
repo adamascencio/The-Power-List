@@ -3,10 +3,10 @@
     <%= user.name.split(' ')[0] %>'s Daily Tasks
   </h1>
   <h3>
-    <%= new Date().toLocaleDateString()%>
+    <%= new Date().toLocaleDateString() %>
   </h3>
   <div>
-    <% if(tasks.length === 0) { %>
+    <% if (tasks.length === 0) { %>
       <h2>You haven't added any tasks for today</h2>
     <% } else { %>
       <ul id="task-listing">
