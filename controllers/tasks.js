@@ -111,8 +111,6 @@ function updateDone(req, res) {
     }
     if (doneTasks === 5) allTasksCompletedCheck = true;
     task.allTasksCompleted = allTasksCompletedCheck;
-    console.log(task);
-    console.log('Done Tasks: ', doneTasks);
     task.save(function(err, task) {
           res.redirect('/tasks');
         });
