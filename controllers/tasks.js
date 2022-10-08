@@ -101,17 +101,21 @@ function update(req, res) {
 
 function updateDone(req, res) {
   Task.findOne({user: req.user._id, _id: req.params.id}, function(err, task) {
-    console.log(req.body.done);
+    let allTasksCompletedCheck = false;
+    let doneTasks = 0;
     for(let i = 0; i < 5; i++) {
       if (task[`task${i}`]._id == req.params.taskId) {
         task[`task${i}`].done = req.body.done === 'true' ? true : false;
-        task.save(function(err, task) {
-          console.log(task);
+      }
+      if (task[`task${i}`].done === true) doneTasks++;
+    }
+    if (doneTasks === 5) allTasksCompletedCheck = true;
+    task.allTasksCompleted = allTasksCompletedCheck;
+    console.log(task);
+    console.log('Done Tasks: ', doneTasks);
+    task.save(function(err, task) {
           res.redirect('/tasks');
         });
-        break;
-      }
-    }
   });
 }
 
