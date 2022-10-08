@@ -43,8 +43,12 @@ function index(req, res) {
       $lte: end
     }
   }, function(err, tasks) {
-    console.log(tasks);
-    res.render('tasks/calendar', {tasks, month, year, getMonthName});
+    const successDays =  tasks.filter(task => task.allTasksCompleted === true);
+    const successDayIds = successDays.map(task => task.date.getDate() + 1);
+    const failDays = tasks.filter(task => task.allTasksCompleted === false);
+    const failDayIds = failDays.map(task => task.date.getDate() + 1);
+    console.log('success: ', successDays);
+    res.render('tasks/calendar', {successDayIds, failDayIds, month, year, getMonthName});
   });
 }
 
