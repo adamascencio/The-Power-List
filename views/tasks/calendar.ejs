@@ -1,5 +1,5 @@
 <%- include('../partials/tasks-partials/calendar-header') %>
-  <h1>Monthly Progress</h1>
+  <h1><%= getMonthName(month) %> <%= year %></h1>
   <div class="grid-bg-color">
     <div id="calendar">
       <% for (let i = 1; i <= 30; i++) { %>

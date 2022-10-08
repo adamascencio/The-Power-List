@@ -13,6 +13,13 @@ module.exports = {
   delete: deleteNote
 };
 
+function getMonthName(monthNumber) {
+  const date = new Date();
+  date.setMonth(monthNumber - 1);
+
+  return date.toLocaleString('en-US', { month: 'long' });
+}
+
 const month = new Date().getMonth()+1;
 const day = new Date().getDate();
 const year = new Date().getFullYear();
@@ -24,10 +31,20 @@ function show(req, res) {
 }
 
 function index(req, res) {
-  Task.find({user: req.user._id}, function(err, tasks) {
-    res.render('tasks/calendar', {tasks, month, year});
-    console.log('Tasks: ', tasks);
-    console.log('Year: ', year);
+  const monthEnd = month % 2 === 0 ? 30 : 31;
+  const start = new Date(`${year}-${month}-01`).setUTCHours(0, 0, 0, 0);
+  const end = new Date(`${year}-${month}-${monthEnd}`).setUTCHours(0, 0, 0, 0);
+
+  // find all user's tasks in current month
+  Task.find({
+    user: req.user._id,
+    date: {
+      $gte: start,
+      $lte: end
+    }
+  }, function(err, tasks) {
+    console.log(tasks);
+    res.render('tasks/calendar', {tasks, month, year, getMonthName});
   });
 }
 
