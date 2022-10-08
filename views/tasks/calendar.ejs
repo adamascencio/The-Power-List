@@ -15,8 +15,8 @@
     </div>
   </div>
   <script>
-    const successIds = <%= JSON.stringify(successDayIds) %>;
-    const failIds = <%= JSON.stringify(failDayIds) %>;
+    const successIds = [<%= successDayIds %>];
+    const failIds = [<%= failDayIds %>];
 
     // give divs a green background for each successDay
     successIds.forEach(day => {
