@@ -3,12 +3,12 @@
   <div class="grid-bg-color">
     <div id="calendar">
       <% for (let i = 1; i <= 30; i++) { %>
-        <div id="<%= i %>" class="grid-border-color">
+        <div id="<%= i %>" class="grid-panel">
           <%= month %>/<%= i %>
         </div>
       <% }; %>
       <% if (month % 2 === 1) { %>
-        <div class="grid-border-color">
+        <div class="grid-panel">
           <%= month %>/31
         </div>
       <% } %>
@@ -21,13 +21,13 @@
     // give divs a green background for each successDay
     successIds.forEach(day => {
       const dayDiv = document.getElementById(day);
-      dayDiv.style.backgroundColor = 'green';
+      dayDiv.style.backgroundColor = 'limegreen';
     });
 
     // give divs a red background for each failDay
     failIds.forEach(day => {
       const dayDiv = document.getElementById(day);
-      dayDiv.style.backgroundColor = 'red';
+      dayDiv.style.backgroundColor = 'lightcoral';
     });
   </script>
   <%- include('../partials/footer')%>

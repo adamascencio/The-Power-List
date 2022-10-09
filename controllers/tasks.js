@@ -47,7 +47,6 @@ function index(req, res) {
     const successDayIds = successDays.map(task => task.date.getDate() + 1);
     const failDays = tasks.filter(task => task.allTasksCompleted === false);
     const failDayIds = failDays.map(task => task.date.getDate() + 1);
-    console.log('success: ', successDays);
     res.render('tasks/calendar', {successDayIds, failDayIds, month, year, getMonthName});
   });
 }
