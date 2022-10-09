@@ -1,6 +1,11 @@
 const User = require('../models/user');
 const Task = require('../models/task');
+const dayjs = require('dayjs')
+const weekday = require('dayjs/plugin/weekday');
+const weekOfYear = require('dayjs/plugin/weekOfYear');
 
+dayjs.extend(weekday);
+dayjs.extend(weekOfYear);
 
 module.exports = {
   show,
