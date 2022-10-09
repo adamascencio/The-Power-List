@@ -295,3 +295,27 @@ ul > li {
   border: 2px solid lightsteelblue;
   border-radius: 10px;
 }
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.legend-container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.legend-green {
+  background-color: limegreen;
+  width: 100px;
+  height: 25px;
+}
+
+.legend-red {
+  background-color: lightcoral;  
+  width: 100px;
+  height: 25px;
+}
