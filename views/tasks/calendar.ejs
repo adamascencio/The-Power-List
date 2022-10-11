@@ -30,6 +30,8 @@
     const PRIOR_MONTH = <%= dayjs().subtract(1, 'month').format('M') %>;
     const NEXT_MONTH = <%= dayjs().add(1, 'month').format('M') %>;
     const TODAY = <%= dayjs().format('YYYY-MM-DD') %>;
+    const SUCCESSIDS = [<%= successDayIds %>];
+    const FAILIDS = [<%= failDayIds %>];
 
     // Calendar State
     let currentMonthDayCount;
@@ -49,6 +51,14 @@
 
     // Event Listeners
 
+    // Helper Functions
+    function createDayDivs(day) {
+      const dayElement = document.createElement('div');
+      dayElement.classList.add('grid-panel');
+      dayElement.id = day.dayOfMonth;
+      dayElement.innerText = day.date;
+      calendarElement.appendChild(dayElement);
+    }
 
     // Functions
     init();
@@ -63,6 +73,9 @@
       previousMonthDayCount = <%= dayjs().subtract(1, 'month').daysInMonth() %>;
       currentMonthDayCount = <%= dayjs().daysInMonth() %>;
       nextMonthDayCount = <%= dayjs().add(1, 'month').daysInMonth() %>;
+      currentMonthDaysArray = [];
+      previousMonthDaysArray = [];
+      nextMonthDaysArray = [];
       firstWeekdayOfMonth = <%= dayjs(`${year}-${month}-01`).weekday() %>;
       lastWeekdayOfMonth = <%= dayjs(`${year}-${month}-${currentMonthDayCount}`).weekday() %>;
       previousMonthDaysDisplayed = firstWeekdayOfMonth - 1;
@@ -85,13 +98,7 @@
         }
       });
 
-      previousMonthDaysArray.reverse().forEach(day => {
-        const dayElement = document.createElement('div');
-        dayElement.classList.add('grid-panel');
-        dayElement.id = day.dayOfMonth;
-        dayElement.innerText = day.date;
-        calendarElement.appendChild(dayElement);
-      });
+      previousMonthDaysArray.reverse().forEach(day => createDayDivs(day));
     }
     
     function renderCurrentMonthCalendarDays() {
@@ -103,13 +110,7 @@
         }
       });
 
-      currentMonthDaysArray.forEach(day => {
-        const dayElement = document.createElement('div');
-        dayElement.classList.add('grid-panel');
-        dayElement.id = day.dayOfMonth;
-        dayElement.innerText = day.date;
-        calendarElement.appendChild(dayElement);
-      });
+      currentMonthDaysArray.forEach(day => createDayDivs(day));
     }
 
     function renderNextMonthCalendarDays() {
@@ -121,26 +122,17 @@
         }
       });
 
-      nextMonthDaysArray.forEach(day => {
-        const dayElement = document.createElement('div');
-        dayElement.classList.add('grid-panel');
-        dayElement.id = day.dayOfMonth;
-        dayElement.innerText = day.date;
-        calendarElement.appendChild(dayElement);
-      });
+      nextMonthDaysArray.forEach(day => createDayDivs(day));
     }
-
-    const successIds = [<%= successDayIds %>];
-    const failIds = [<%= failDayIds %>];
     
     // give divs a green background for each successDay
-    successIds.forEach(day => {
+    SUCCESSIDS.forEach(day => {
       const dayDiv = document.getElementById(day);
       dayDiv.style.backgroundColor = 'limegreen';
     });
 
     // give divs a red background for each failDay
-    failIds.forEach(day => {
+    FAILIDS.forEach(day => {
       const dayDiv = document.getElementById(day);
       dayDiv.style.backgroundColor = 'lightcoral';
     });
