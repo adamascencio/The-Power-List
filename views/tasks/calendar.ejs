@@ -80,7 +80,7 @@
       previousMonthDaysArray = [...Array(previousMonthDaysDisplayed)].map((day, index) => {
         return {
           dayOfMonth: previousMonthDayCount - index,
-          date: `${PRIOR_MONTH}-${previousMonthDayCount - index}`,
+          date: `${PRIOR_MONTH}/${previousMonthDayCount - index}`,
           isCurrentMonth: false
         }
       });
@@ -113,7 +113,21 @@
     }
 
     function renderNextMonthCalendarDays() {
-      
+      nextMonthDaysArray = [...Array(nextMonthDaysDisplayed)].map((day, index) => {
+        return {
+          dayOfMonth: index + 1,
+          date: `${NEXT_MONTH}/${index + 1}`,
+          isCurrentMonth: false
+        }
+      });
+
+      nextMonthDaysArray.forEach(day => {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('grid-panel');
+        dayElement.id = day.dayOfMonth;
+        dayElement.innerText = day.date;
+        calendarElement.appendChild(dayElement);
+      });
     }
 
     const successIds = [<%= successDayIds %>];
