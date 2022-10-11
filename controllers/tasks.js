@@ -25,7 +25,7 @@ function getMonthName(monthNumber) {
   return date.toLocaleString('en-US', { month: 'long' });
 }
 
-const month = dayjs().format("M");
+const month = dayjs().format("MM");
 const day = dayjs().format("DD");
 const year = dayjs().format("YYYY");
 
