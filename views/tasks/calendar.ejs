@@ -1,18 +1,14 @@
 <%- include('../partials/tasks-partials/calendar-header') %>
   <h1><%= getMonthName(month) %> <%= year %></h1>
-  <div class="grid-bg-color">
-    <div id="calendar">
-      <% for (let i = 1; i <= 30; i++) { %>
-        <div id="<%= i %>" class="grid-panel">
-          <%= month %>/<%= i %>
-        </div>
-      <% }; %>
-      <% if (month % 2 === 1) { %>
-        <div class="grid-panel">
-          <%= month %>/31
-        </div>
-      <% } %>
-    </div>
+  <div id="calendar-month" class="grid-bg-color">
+    <!-- Calendar Grid Header -->
+    <section class="calendar-month-header">
+      <div id="selected-month"></div>
+      <ol id="days-of-week" class="day-of-week"></ol>
+    </section>
+
+    <!-- Calendar Grid -->
+    <div id="calendar" class="calendar-grid"></div>
   </div>
   <!-- Legend -->
   <div class="legend-container">
@@ -25,10 +21,104 @@
       <h3>Failed Task(s)</h3>
     </div>
   </div>
+  <h1><%= dayjs().format('YYYY-MM-D') %></h1>
   <script>
+    // Constants
+    const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const INITIAL_YEAR = <%= year %>;
+    const INITIAL_MONTH = <%= month %>;
+    const PRIOR_MONTH = <%= dayjs().subtract(1, 'month').format('M') %>;
+    const NEXT_MONTH = <%= dayjs().add(1, 'month').format('M') %>;
+    const TODAY = <%= dayjs().format('YYYY-MM-DD') %>;
+
+    // Calendar State
+    let currentMonthDayCount;
+    let previousMonthDayCount;
+    let nextMonthDayCount;
+    let currentMonthDaysArray;
+    let previousMonthDaysArray;
+    let nextMonthDaysArray;
+    let firstWeekdayOfMonth;
+    let lastWeekdayOfMonth;
+    let previousMonthDaysDisplayed;
+    let nextMonthDaysDisplayed;
+
+    // Cached Elements
+    const calendarElement = document.getElementById('calendar');
+    const daysOfWeekElement = document.getElementById('days-of-week');
+
+    // Event Listeners
+
+
+    // Functions
+    init();
+
+    WEEKDAYS.forEach(day => {
+      const weekDayElement = document.createElement('li');
+      daysOfWeekElement.appendChild(weekDayElement);
+      weekDayElement.innerText = day;
+    });
+
+    function init() {
+      previousMonthDayCount = <%= dayjs().subtract(1, 'month').daysInMonth() %>;
+      currentMonthDayCount = <%= dayjs().daysInMonth() %>;
+      nextMonthDayCount = <%= dayjs().add(1, 'month').daysInMonth() %>;
+      firstWeekdayOfMonth = <%= dayjs(`${year}-${month}-01`).weekday() %>;
+      lastWeekdayOfMonth = <%= dayjs(`${year}-${month}-${currentMonthDayCount}`).weekday() %>;
+      previousMonthDaysDisplayed = firstWeekdayOfMonth - 1;
+      nextMonthDaysDisplayed = 7 - lastWeekdayOfMonth;
+      render();
+    }
+
+    function render() {
+      renderPreviousMonthCalendarDays();
+      renderCurrentMonthCalendarDays();
+      renderNextMonthCalendarDays();
+    }
+
+    function renderPreviousMonthCalendarDays() {
+      previousMonthDaysArray = [...Array(previousMonthDaysDisplayed)].map((day, index) => {
+        return {
+          dayOfMonth: previousMonthDayCount - index,
+          date: `${PRIOR_MONTH}-${previousMonthDayCount - index}`,
+          isCurrentMonth: false
+        }
+      });
+
+      previousMonthDaysArray.reverse().forEach(day => {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('grid-panel');
+        dayElement.id = day.dayOfMonth;
+        dayElement.innerText = day.date;
+        calendarElement.appendChild(dayElement);
+      });
+    }
+    
+    function renderCurrentMonthCalendarDays() {
+      currentMonthDaysArray = [...Array(currentMonthDayCount)].map((day, index) => {
+        return {
+          dayOfMonth: index + 1,
+          date: `${INITIAL_MONTH}/${index + 1}`,
+          isCurrentMonth: true,
+        }
+      });
+
+      currentMonthDaysArray.forEach(day => {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('grid-panel');
+        dayElement.id = day.dayOfMonth;
+        dayElement.innerText = day.date;
+        calendarElement.appendChild(dayElement);
+      });
+    }
+
+    function renderNextMonthCalendarDays() {
+      
+    }
+
     const successIds = [<%= successDayIds %>];
     const failIds = [<%= failDayIds %>];
-
+    
     // give divs a green background for each successDay
     successIds.forEach(day => {
       const dayDiv = document.getElementById(day);

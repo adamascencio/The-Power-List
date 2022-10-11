@@ -268,21 +268,32 @@ ul > li {
 }
 
 /* Calendar Styles */
-#calendar {
-  width: 100%;
-  margin: 0 auto;
+ol, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.calendar-grid{
+  position: relative;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 50px);
   gap: 25px 10px;
-  border: 3px solid whitesmoke;
   padding: 5px;
+}
+
+.calendar-month-header {
+  display: flex;
+}
+
+.day-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
 }
 
 .grid-bg-color {
   background-color: lightseagreen;
-  width: 60vw;
-  max-width: 700px;
   margin: 30px auto;
 }
 
@@ -294,6 +305,7 @@ ul > li {
   font-weight: bold;
   border: 2px solid lightsteelblue;
   border-radius: 10px;
+  padding: 20px;
 }
 
 .flex-row {
@@ -318,4 +330,9 @@ ul > li {
   background-color: lightcoral;  
   width: 100px;
   height: 25px;
+}
+
+.not-current-month {
+  background-color: lightgrey;
+  color: grey;
 }

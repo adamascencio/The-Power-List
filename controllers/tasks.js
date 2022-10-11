@@ -25,9 +25,9 @@ function getMonthName(monthNumber) {
   return date.toLocaleString('en-US', { month: 'long' });
 }
 
-const month = new Date().getMonth()+1;
-const day = new Date().getDate();
-const year = new Date().getFullYear();
+const month = dayjs().format("M");
+const day = dayjs().format("DD");
+const year = dayjs().format("YYYY");
 
 function show(req, res) {
   Task.find({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
@@ -36,9 +36,17 @@ function show(req, res) {
 }
 
 function index(req, res) {
-  const monthEnd = month % 2 === 0 ? 30 : 31;
+  // Calendar Data
+  const daysInMonth = dayjs(`${year}-${month}-01`).daysInMonth();
+  const currentMonthDayCount = dayjs(`${year}-${month}-01`).daysInMonth();
+
+  function getWeekday(date) {
+      return dayjs(date).weekday();
+    }
+
+  // Mongoose Search Criteria
   const start = new Date(`${year}-${month}-01`).setUTCHours(0, 0, 0, 0);
-  const end = new Date(`${year}-${month}-${monthEnd}`).setUTCHours(0, 0, 0, 0);
+  const end = new Date(`${year}-${month}-${daysInMonth}`).setUTCHours(0, 0, 0, 0);
 
   // find all user's tasks in current month
   Task.find({
@@ -52,7 +60,19 @@ function index(req, res) {
     const successDayIds = successDays.map(task => task.date.getDate() + 1);
     const failDays = tasks.filter(task => task.allTasksCompleted === false);
     const failDayIds = failDays.map(task => task.date.getDate() + 1);
-    res.render('tasks/calendar', {successDayIds, failDayIds, month, year, getMonthName});
+    res.render('tasks/calendar', 
+      {
+        dayjs,
+        weekday,
+        weekOfYear,
+        currentMonthDayCount,
+        getWeekday,
+        successDayIds, 
+        failDayIds, 
+        month, 
+        year, 
+        getMonthName}
+    );
   });
 }
 
