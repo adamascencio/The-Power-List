@@ -25,24 +25,18 @@ function getMonthName(monthNumber) {
   return date.toLocaleString('en-US', { month: 'long' });
 }
 
+const today = dayjs().format("YYYY-MM-D");
 const month = dayjs().format("MM");
-const day = dayjs().format("DD");
 const year = dayjs().format("YYYY");
 
 function show(req, res) {
-  Task.find({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
+  Task.find({user: req.user._id, date: today}, function(err, tasks) {
     res.render('tasks/index', {tasks});
   });
 }
 
 function index(req, res) {
-  // Calendar Data
-  const daysInMonth = dayjs(`${year}-${month}-01`).daysInMonth();
-  const currentMonthDayCount = dayjs(`${year}-${month}-01`).daysInMonth();
-
-  function getWeekday(date) {
-      return dayjs(date).weekday();
-    }
+  const daysInMonth = dayjs(`${year}-${month}`).daysInMonth();
 
   // Mongoose Search Criteria
   const start = new Date(`${year}-${month}-01`).setUTCHours(0, 0, 0, 0);
@@ -57,16 +51,16 @@ function index(req, res) {
     }
   }, function(err, tasks) {
     const successDays =  tasks.filter(task => task.allTasksCompleted === true);
-    const successDayIds = successDays.map(task => task.date.getDate() + 1);
+    const successDayIds = successDays.map(task => dayjs(task.date).add(1, 'day').format('YYYY-MM-D'));
+    console.log(successDayIds);
     const failDays = tasks.filter(task => task.allTasksCompleted === false);
-    const failDayIds = failDays.map(task => task.date.getDate() + 1);
+    const failDayIds = failDays.map(task => dayjs(task.date).add(1, 'day').format('YYYY-MM-D'));
     res.render('tasks/calendar', 
       {
         dayjs,
         weekday,
         weekOfYear,
-        currentMonthDayCount,
-        getWeekday,
+        daysInMonth,
         successDayIds, 
         failDayIds, 
         month, 
@@ -117,7 +111,7 @@ function create (req, res) {
 }
 
 function edit(req, res) {
-  Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
+  Task.findOne({user: req.user._id, date: today}, function(err, tasks) {
     for (let i = 0; i < 5; i++) {
       if (tasks[`task${i}`]._id == req.params.id) {
         res.render('tasks/edit', {task: tasks[`task${i}`]});
@@ -128,7 +122,7 @@ function edit(req, res) {
 }
 
 function update(req, res) {
-  Task.findOne({user: req.user._id, date: new Date(`${year}-${month}-${day}`).setUTCHours(0, 0, 0, 0)}, function(err, tasks) {
+  Task.findOne({user: req.user._id, date: today}, function(err, tasks) {
     if (req.body.notes !== '' && req.body.notes !== null) tasks.notes.push(req.body.notes);
     for (let i = 0; i < 5; i++) {
       if (tasks[`task${i}`]._id == req.params.id) {

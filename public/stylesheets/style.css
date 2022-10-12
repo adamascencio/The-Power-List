@@ -302,7 +302,6 @@ ol, li {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
   border: 2px solid lightsteelblue;
   border-radius: 10px;
   padding: 20px;
