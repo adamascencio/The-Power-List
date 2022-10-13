@@ -27,9 +27,6 @@ const taskSchema = new Schema ({
     type: Boolean,
     default: false
   },
-  formattedDate: {
-    type: String,
-  },
   date: {
     type: Date,
     default: function() {return new Date();}

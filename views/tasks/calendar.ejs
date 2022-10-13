@@ -28,7 +28,7 @@
     const INITIAL_MONTH = <%= month %>;
     const PRIOR_MONTH = <%= dayjs().subtract(1, 'month').format('M') %>;
     const NEXT_MONTH = <%= dayjs().add(1, 'month').format('M') %>;
-    const TODAY = <%= dayjs().format('YYYY-MM-DD') %>;
+    const TODAY = <%= dayjs().format('YYYY-MM-D') %>;
     const SUCCESSIDS = <%- JSON.stringify(successDayIds) %>;
     const FAILIDS = <%- JSON.stringify(failDayIds) %>;
 
@@ -97,6 +97,7 @@
         return {
           dayOfMonth: previousMonthDayCount - index,
           date: `${PRIOR_MONTH}-${previousMonthDayCount - index}`,
+          id: `${INITIAL_YEAR}-${PRIOR_MONTH}-${previousMonthDayCount - index}`,
           isCurrentMonth: false
         }
       });
@@ -108,6 +109,7 @@
         return {
           dayOfMonth: index + 1,
           date: `${INITIAL_MONTH}-${index + 1}`,
+          id: `${INITIAL_YEAR}-${INITIAL_MONTH}-${index + 1}`,
           isCurrentMonth: true,
         }
       });
@@ -119,6 +121,7 @@
         return {
           dayOfMonth: index + 1,
           date: `${NEXT_MONTH}-${index + 1}`,
+          id: `${INITIAL_YEAR}-${NEXT_MONTH}-${index + 1}`,
           isCurrentMonth: false
         }
       });
@@ -136,7 +139,11 @@
         dayDiv.style.backgroundColor = 'lightcoral';
       });
 
-      // const allCalendarDays = [...this.previousMonthDaysArray, ...this.currentMonthDaysArray, ...this.nextMonthDaysArray];
+      const allCalendarDays = [...previousMonthDaysArray, ...currentMonthDaysArray, ...nextMonthDaysArray];
+      allCalendarDays.forEach(day => {
+        const dayDiv = document.getElementById(day.id);
+        day.isCurrentMonth ? dayDiv.classList.add('current-month') : dayDiv.classList.add('not-current-month');
+      });
     }
   </script>
   <%- include('../partials/footer')%>
