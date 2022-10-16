@@ -284,8 +284,9 @@ ol, li {
   position: relative;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 25px 10px;
-  padding: 20px;
+  grid-template-rows: repeat(6, 50px);
+  justify-items: stretch;
+  padding: 20px 20px 0 20px;
 }
 
 .calendar-month-header {
@@ -296,12 +297,6 @@ ol, li {
 
 .current-month {
   font-weight: bold;
-}
-
-.current-month:hover {
-  cursor: pointer;
-  border: 2px solid var(--bs-red);
-  transform: scale(1.1);
 }
 
 .day-of-week {
@@ -320,14 +315,15 @@ ol, li {
 .grid-panel {
   background-color: white;
   display: flex;
-  margin: 0 auto;
   align-items: center;
   justify-content: center;
   border: 2px solid lightsteelblue;
-  border-radius: 10px;
-  padding: 10px;
   font-size: clamp(.6rem, 2vw, 1rem);
   box-shadow: #242121 0px 0px 20px;
+}
+
+.grid-panel > a {
+  color: black;
 }
 
 .flex-row {
@@ -359,26 +355,30 @@ ol, li {
   color: grey;
 }
 
+.success {
+  background-color: limegreen;
+}
+
+.fail {
+  background-color: lightcoral;
+}
+
+.success:hover, .fail:hover {
+  cursor: pointer;
+  border: 2px solid var(--bs-red);
+  transform: scale(1.05);
+}
+
 /* calendar media queries */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .grid-bg-color {
-    width: 100vw;
+    width: 80vw;
   }
 }
 
 @media (max-width: 576px) {
-  .calendar-grid {
-    width: 100vw;
-    padding: 20px 0;
-    gap: 25px 0;
-  }
-
-  .calendar-month-header {
-    padding: 0;
-  }
-
   .grid-bg-color {
-    width: 100%;
-    margin: 0;
+    width: 90vw;
+    margin: 0 auto;
   }
 }

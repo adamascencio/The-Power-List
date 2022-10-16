@@ -61,6 +61,14 @@
       calendarElement.appendChild(dayElement);
     }
 
+    function createLinks(day) {
+      document.getElementById(day.id).innerText = ''
+      const linkElement = document.createElement('a');
+      linkElement.href = `/tasks/${day.id}`;
+      linkElement.innerText = day.date;
+      document.getElementById(day.id).appendChild(linkElement);
+    }
+
     // Functions
     init();
 
@@ -115,7 +123,10 @@
           isCurrentMonth: true,
         }
       });
-      currentMonthDaysArray.forEach(day => createDayDivs(day));
+      currentMonthDaysArray.forEach(day => {
+        createDayDivs(day);
+        if (SUCCESSIDS.includes(day.id) || FAILIDS.includes(day.id)) createLinks(day);
+      });
     }
 
     function renderNextMonthCalendarDays() {
@@ -133,20 +144,23 @@
     function renderCalendarDayStyles() {
       SUCCESSIDS.forEach(day => {
         const dayDiv = document.getElementById(day);
-        const link = document.createElement('a').innerText = 'View';
-        dayDiv.style.backgroundColor = 'limegreen';
+        dayDiv.classList.add('success');
+        document.querySelector('.grid-panel > a').removeAttribute('onclick');
       });
 
       FAILIDS.forEach(day => {
         const dayDiv = document.getElementById(day);
-        const link = document.createElement('a');
-        dayDiv.style.backgroundColor = 'lightcoral';
+        dayDiv.classList.add('fail');
+        document.querySelector('.grid-panel > a').removeAttribute('onclick');
       });
 
       const allCalendarDays = [...previousMonthDaysArray, ...currentMonthDaysArray, ...nextMonthDaysArray];
       allCalendarDays.forEach(day => {
         const dayDiv = document.getElementById(day.id);
-        day.isCurrentMonth ? dayDiv.classList.add('current-month') : dayDiv.classList.add('not-current-month');
+        day.isCurrentMonth ? 
+        dayDiv.classList.add('current-month') 
+        : 
+        dayDiv.classList.add('not-current-month');
       });
     }
   </script>
