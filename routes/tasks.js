@@ -11,6 +11,8 @@ router.get('/calendar', tasksCtrl.index);
 router.get('/new', tasksCtrl.new);
 // GET /tasks/:id (edit functionality - show form for editing tasks)
 router.get('/:id/edit', tasksCtrl.edit);
+// GET /tasks/:date (show functionality - show a specific task)
+router.get('/:date', tasksCtrl.viewTask);
 // PUT /tasks/:id/task/:taskId (update functionality - update done boolean)
 router.put('/:id/task/:taskId', tasksCtrl.updateDone);
 // PUT /tasks/:id (update functionality - update a task)
