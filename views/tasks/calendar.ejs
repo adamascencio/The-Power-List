@@ -1,9 +1,15 @@
 <%- include('../partials/tasks-partials/calendar-header') %>
   <div class="content-container">
-    <h1><%= getMonthName(month) %> <%= year %></h1>
     <div id="calendar-month" class="grid-bg-color">
       <!-- Calendar Grid Header -->
       <section class="calendar-month-header">
+        <div class="flex-space-between">
+          <h1><%= getMonthName(month) %> <%= year %></h1>
+          <div>
+            <button id="decrement-month"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="increment-month"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
         <div id="selected-month"></div>
         <ol id="days-of-week" class="day-of-week"></ol>
       </section>
@@ -25,16 +31,20 @@
   </div>
   <script>
     // Constants
+    const MONTHCOUNTS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    const INITIAL_YEAR = <%= year %>;
-    const INITIAL_MONTH = <%= month %>;
-    const PRIOR_MONTH = <%= dayjs().subtract(1, 'month').format('M') %>;
-    const NEXT_MONTH = <%= dayjs().add(1, 'month').format('M') %>;
+    const INITIAL_YEAR = new Date().getFullYear();
+    const INITIAL_MONTH = new Date().getMonth();
+    const PRIOR_MONTH = INITIAL_MONTH - 1;
+    const NEXT_MONTH = INITIAL_MONTH + 1;
     const TODAY = <%= dayjs().format('YYYY-MM-D') %>;
     const SUCCESSIDS = <%- JSON.stringify(successDayIds) %>;
     const FAILIDS = <%- JSON.stringify(failDayIds) %>;
 
     // Calendar State
+    let newYear;
+    let newMonth;
+    let currentMonthIdx;
     let currentMonthDayCount;
     let previousMonthDayCount;
     let nextMonthDayCount;
@@ -49,8 +59,12 @@
     // Cached Elements
     const calendarElement = document.getElementById('calendar');
     const daysOfWeekElement = document.getElementById('days-of-week');
+    const addMonthBtn = document.getElementById('increment-month');
+    const subtractMonthBtn = document.getElementById('decrement-month');
 
     // Event Listeners
+    document.getElementById('increment-month').addEventListener('click', handleIncrementMonth);
+    document.getElementById('decrement-month').addEventListener('click', handleDecrementMonth);
 
     // Helper Functions
     function createDayDivs(day) {
@@ -69,45 +83,50 @@
       document.getElementById(day.id).appendChild(linkElement);
     }
 
+    function removeAllDayElements() {
+      const dayElements = document.querySelectorAll('.grid-panel');
+      dayElements.forEach(day => day.remove());
+    }
+
     // Functions
     init();
 
     function init() {
-      previousMonthDayCount = <%= dayjs().subtract(1, 'month').daysInMonth() %>;
-      currentMonthDayCount = <%= dayjs().daysInMonth() %>;
-      nextMonthDayCount = <%= dayjs().add(1, 'month').daysInMonth() %>;
+      WEEKDAYS.forEach(day => {
+        const weekDayElement = document.createElement('li');
+        daysOfWeekElement.appendChild(weekDayElement);
+        weekDayElement.innerText = day;
+      });
+
+      newYear = INITIAL_YEAR;
+      newMonth = INITIAL_MONTH;
+      currentMonthIdx = new Date().getMonth();
+      previousMonthDayCount = MONTHCOUNTS[currentMonthIdx - 1];
+      currentMonthDayCount = MONTHCOUNTS[currentMonthIdx];
+      nextMonthDayCount = MONTHCOUNTS[currentMonthIdx + 1];
       currentMonthDaysArray = [];
       previousMonthDaysArray = [];
       nextMonthDaysArray = [];
-      firstWeekdayOfMonth = <%= dayjs(`${year}-${month}-01`).weekday() %>;
-      lastWeekdayOfMonth = <%= dayjs(`${year}-${month}-${daysInMonth}`).weekday() %>;
+      firstWeekdayOfMonth = new Date(INITIAL_YEAR, INITIAL_MONTH, 1).getDay();
+      lastWeekdayOfMonth = new Date(INITIAL_YEAR, INITIAL_MONTH, currentMonthDayCount).getDay();
       previousMonthDaysDisplayed = firstWeekdayOfMonth - 1;
       nextMonthDaysDisplayed = 7 - lastWeekdayOfMonth;
       render();
     }
 
     function render() {
-      renderWeekdayLabels();
       renderPreviousMonthCalendarDays();
       renderCurrentMonthCalendarDays();
       renderNextMonthCalendarDays();
       renderCalendarDayStyles();
     }
 
-    function renderWeekdayLabels() {
-      WEEKDAYS.forEach(day => {
-        const weekDayElement = document.createElement('li');
-        daysOfWeekElement.appendChild(weekDayElement);
-        weekDayElement.innerText = day;
-      });
-    }
-
     function renderPreviousMonthCalendarDays() {
       previousMonthDaysArray = [...Array(previousMonthDaysDisplayed)].map((day, index) => {
         return {
           dayOfMonth: previousMonthDayCount - index,
-          date: `${PRIOR_MONTH}-${previousMonthDayCount - index}`,
-          id: `${INITIAL_YEAR}-${PRIOR_MONTH}-${previousMonthDayCount - index}`,
+          date: `${currentMonthIdx}-${previousMonthDayCount - index}`,
+          id: `${newYear}-${currentMonthIdx}-${previousMonthDayCount - index}`,
           isCurrentMonth: false
         }
       });
@@ -118,8 +137,8 @@
       currentMonthDaysArray = [...Array(currentMonthDayCount)].map((day, index) => {
         return {
           dayOfMonth: index + 1,
-          date: `${INITIAL_MONTH}-${index + 1}`,
-          id: `${INITIAL_YEAR}-${INITIAL_MONTH}-${index + 1}`,
+          date: `${currentMonthIdx + 1}-${index + 1}`,
+          id: `${newYear}-${currentMonthIdx + 1}-${index + 1}`,
           isCurrentMonth: true,
         }
       });
@@ -133,8 +152,8 @@
       nextMonthDaysArray = [...Array(nextMonthDaysDisplayed)].map((day, index) => {
         return {
           dayOfMonth: index + 1,
-          date: `${NEXT_MONTH}-${index + 1}`,
-          id: `${INITIAL_YEAR}-${NEXT_MONTH}-${index + 1}`,
+          date: `${currentMonthIdx + 2}-${index + 1}`,
+          id: `${newYear}-${currentMonthIdx + 2}-${index + 1}`,
           isCurrentMonth: false
         }
       });
@@ -162,6 +181,30 @@
         : 
         dayDiv.classList.add('not-current-month');
       });
+    }
+
+    function handleIncrementMonth() {
+      currentMonthIdx++;
+      if (currentMonthIdx > 11) {
+        currentMonthIdx = 0;
+        newYear++;
+      }
+      firstWeekdayOfMonth = new Date(newYear, currentMonthIdx, 1).getDay();
+      lastWeekdayOfMonth = new Date(newYear, currentMonthIdx, currentMonthDayCount).getDay();
+      removeAllDayElements();
+      render();
+    }
+
+    function handleDecrementMonth() {
+      currentMonthIdx--;
+      if (currentMonthIdx < 0) {
+        currentMonthIdx = 11;
+        newYear--;
+      }
+      firstWeekdayOfMonth = new Date(newYear, currentMonthIdx, 1).getDay();
+      lastWeekdayOfMonth = new Date(newYear, currentMonthIdx, currentMonthDayCount).getDay();
+      removeAllDayElements();
+      render();
     }
   </script>
   <%- include('../partials/footer')%>
