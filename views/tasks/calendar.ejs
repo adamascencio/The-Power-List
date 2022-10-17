@@ -78,7 +78,7 @@
     function createDayDivs(day) {
       const dayElement = document.createElement('div');
       dayElement.classList.add('grid-panel');
-      dayElement.id = `${INITIAL_YEAR}-${day.date}`;
+      dayElement.id = `${newYear}-${day.date}`;
       dayElement.innerText = day.date;
       calendarElement.appendChild(dayElement);
     }
@@ -217,18 +217,6 @@
       nextMonthDaysDisplayed = 7 - lastWeekdayOfMonth;
       removeAllDayElements();
       render();
-      console.log([...previousMonthDaysArray, ...currentMonthDaysArray, ...nextMonthDaysArray]);
-      console.log('year: ', newYear);
-      console.log('month: ', currentMonthIdx);
-      console.log('first weekday: ', firstWeekdayOfMonth);
-      console.log('last weekday: ', lastWeekdayOfMonth);
-      console.log('previous month day count: ', previousMonthDayCount);
-      console.log('previous month day array: ', previousMonthDaysArray);
-      console.log('previous months days displayed: ', previousMonthDaysDisplayed);
-      console.log('next month days displayed: ', nextMonthDaysDisplayed);
-      console.log('previous month array: ', previousMonthDaysArray);
-      console.log('current month array: ', currentMonthDaysArray);
-      console.log('next month array: ', nextMonthDaysArray);
     }
 
     function handleDecrementMonth() {
@@ -254,19 +242,6 @@
       lastWeekdayOfMonth = lastWeekdayOfMonth === 0 ? 7 : lastWeekdayOfMonth;
       previousMonthDaysDisplayed = firstWeekdayOfMonth - 1;
       nextMonthDaysDisplayed = 7 - lastWeekdayOfMonth;
-      removeAllDayElements();
-      render();
-      console.log([...previousMonthDaysArray, ...currentMonthDaysArray, ...nextMonthDaysArray]);
-      console.log('year: ', newYear);
-      console.log('month: ', currentMonthIdx);
-      console.log('first weekday: ', firstWeekdayOfMonth);
-      console.log('last weekday: ', lastWeekdayOfMonth);
-      console.log('previous month day count: ', previousMonthDayCount);
-      console.log('previous months days displayed: ', previousMonthDaysDisplayed);
-      console.log('next month days displayed: ', nextMonthDaysDisplayed);
-      console.log('previous month array: ', previousMonthDaysArray);
-      console.log('current month array: ', currentMonthDaysArray);
-      console.log('next month array: ', nextMonthDaysArray);
       removeAllDayElements();
       render();
     }
