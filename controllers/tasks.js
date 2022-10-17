@@ -19,13 +19,6 @@ module.exports = {
   delete: deleteNote
 };
 
-function getMonthName(monthNumber) {
-  const date = new Date();
-  date.setMonth(monthNumber - 1);
-
-  return date.toLocaleString('en-US', { month: 'long' });
-}
-
 const today = dayjs().format("YYYY-MM-D");
 const month = dayjs().format("MM");
 const year = dayjs().format("YYYY");
@@ -44,13 +37,7 @@ function index(req, res) {
   const end = new Date(`${year}-${month}-${daysInMonth}`).setUTCHours(0, 0, 0, 0);
 
   // find all user's tasks in current month
-  Task.find({
-    user: req.user._id,
-    date: {
-      $gte: start,
-      $lte: end
-    }
-  }, function(err, tasks) {
+  Task.find({user: req.user._id,}, function(err, tasks) {
     const successDays =  tasks.filter(task => task.allTasksCompleted === true);
     const successDayIds = successDays.map(task => dayjs(task.date).add(1, 'day').format('YYYY-MM-D'));
     console.log(successDayIds);
@@ -65,8 +52,8 @@ function index(req, res) {
         successDayIds, 
         failDayIds, 
         month, 
-        year, 
-        getMonthName}
+        year 
+      }
     );
   });
 }
