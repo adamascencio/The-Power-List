@@ -49,6 +49,10 @@ label {
   #main-navbar {
     display: none;
   }
+
+  .offcanvas.offcanvas-end {
+    --bs-offcanvas-width: 40vw;
+  }
 }
 
 /* Landing Page Styles */
