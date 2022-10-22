@@ -5,9 +5,9 @@
       <section class="calendar-month-header">
         <div class="flex-space-between">
           <h1 id="month-label"></h1>
-          <div>
-            <button id="decrement-month"><i class="fa-solid fa-chevron-left"></i></button>
-            <button id="increment-month"><i class="fa-solid fa-chevron-right"></i></button>
+          <div class="flex">
+            <button class="btn btn-sm btn-light" id="decrement-month"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="btn btn-sm btn-light" id="increment-month"><i class="fa-solid fa-chevron-right"></i></button>
           </div>
         </div>
         <div id="selected-month"></div>
@@ -142,7 +142,7 @@
       });
       previousMonthDaysArray.reverse().forEach(day => createDayDivs(day));
     }
-    
+
     function renderCurrentMonthCalendarDays() {
       currentMonthDaysArray = [...Array(currentMonthDayCount)].map((day, index) => {
         return {
@@ -199,9 +199,6 @@
       previousMonthDayCount = MONTHCOUNTS[currentMonthIdx - 1];
       currentMonthDayCount = MONTHCOUNTS[currentMonthIdx];
       nextMonthDayCount = MONTHCOUNTS[currentMonthIdx + 1];
-      currentMonthDaysArray = [];
-      previousMonthDaysArray = [];
-      nextMonthDaysArray = [];
       if (currentMonthIdx > 11) {
         currentMonthIdx = 0;
         newYear++;
@@ -224,9 +221,6 @@
       previousMonthDayCount = MONTHCOUNTS[currentMonthIdx - 1];
       currentMonthDayCount = MONTHCOUNTS[currentMonthIdx];
       nextMonthDayCount = MONTHCOUNTS[currentMonthIdx + 1];
-      currentMonthDaysArray = [];
-      previousMonthDaysArray = [];
-      nextMonthDaysArray = [];
       if (currentMonthIdx === 0) {
         previousMonthDayCount = MONTHCOUNTS[11];
       } else if (currentMonthIdx < 0) {

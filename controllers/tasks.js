@@ -93,7 +93,9 @@ function create (req, res) {
   object.date = new Date(req.body.date);
   var task = new Task(object);
   task.user = req.user._id;
+  console.log('task: ', task);
   task.save(function(err, task) {
+    console.log('saved task: ', task);
     res.redirect('/tasks');
   });
 }

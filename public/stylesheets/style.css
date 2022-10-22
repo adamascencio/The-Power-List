@@ -22,6 +22,10 @@ nav > a:hover {
   color: #079cff;
 }
 
+.nav-item:not(:first-child) {
+  margin-top: 1rem;
+}
+
 label {
   font-weight: bold;
   margin-bottom: 5px;
@@ -33,6 +37,20 @@ label {
   padding-left: 25px;
   padding-right: 25px;
 }
+
+/* Navbar Media Queries */
+@media (min-width: 768px) {
+  #alt-navbar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #main-navbar {
+    display: none;
+  }
+}
+
 /* Landing Page Styles */
 
 .form-group > p {
@@ -307,6 +325,11 @@ ol, li {
   grid-template-columns: repeat(7, 1fr);
   width: 100%;
   justify-items: start;
+}
+
+.flex {
+  display: flex;
+  column-gap: 10px;
 }
 
 .flex-space-between {
