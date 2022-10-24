@@ -102,7 +102,8 @@ function create (req, res) {
 
 function viewTask(req, res) {
   Task.findOne({user: req.user._id, date: new Date(req.params.date)}, function(err, task) {
-    res.render('tasks/viewTask', {task});
+    console.log('task: ', task);
+    res.render('tasks/viewTask', {task, date: req.params.date});
   });
 }
 

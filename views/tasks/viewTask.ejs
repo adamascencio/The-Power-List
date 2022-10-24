@@ -1,5 +1,23 @@
 <%- include('../partials/tasks-partials/calendar-header') %>
 <div class="content-container">
-  <h1>Test</h1>
+  <h1>
+    Task List 
+    <br>
+    <%= date %>
+  </h1>
+  <ul class="ctr">
+    <li>Task</li>
+    <li>Status</li>
+    <li><%= task.task0.title %></li>
+    <li><%= task.task0.done ? 'Completed' : 'Not Completed' %></li>
+    <li><%= task.task1.title %></li>
+    <li><%= task.task1.done ? 'Completed' : 'Not Completed' %></li>
+    <li><%= task.task2.title %></li>
+    <li><%= task.task2.done ? 'Completed' : 'Not Completed' %></li>
+    <li><%= task.task3.title %></li>
+    <li><%= task.task3.done ? 'Completed' : 'Not Completed' %></li>
+    <li><%= task.task4.title %></li>
+    <li><%= task.task4.done ? 'Completed' : 'Not Completed' %></li>
+  </ul>
 </div>
 <%- include('../partials/footer') %>
