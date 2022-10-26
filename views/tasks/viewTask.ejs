@@ -6,8 +6,8 @@
     <%= date %>
   </h1>
   <ul class="ctr">
-    <li>Task</li>
-    <li>Status</li>
+    <li class="heading">Task</li>
+    <li class="heading">Status</li>
     <li><%= task.task0.title %></li>
     <li><%= task.task0.done ? 'Completed' : 'Not Completed' %></li>
     <li><%= task.task1.title %></li>
@@ -19,5 +19,13 @@
     <li><%= task.task4.title %></li>
     <li><%= task.task4.done ? 'Completed' : 'Not Completed' %></li>
   </ul>
+  <div class="ctr col-1">
+    <p class="heading">Notes</p>
+    <ul>
+      <% for (let i = 0; i < task.notes.length; i++) { %>
+        <li><%= task.notes[i] %></li>
+      <% } %>
+    </ul>
+  </div>
 </div>
 <%- include('../partials/footer') %>

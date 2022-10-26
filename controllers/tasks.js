@@ -40,7 +40,6 @@ function index(req, res) {
   Task.find({user: req.user._id,}, function(err, tasks) {
     const successDays =  tasks.filter(task => task.allTasksCompleted === true);
     const successDayIds = successDays.map(task => dayjs(task.date).add(1, 'day').format('YYYY-MM-D'));
-    console.log(successDayIds);
     const failDays = tasks.filter(task => task.allTasksCompleted === false);
     const failDayIds = failDays.map(task => dayjs(task.date).add(1, 'day').format('YYYY-MM-D'));
     res.render('tasks/calendar', 
@@ -95,6 +94,7 @@ function create (req, res) {
   task.user = req.user._id;
   console.log('task: ', task);
   task.save(function(err, task) {
+    if (err) console.log(err);
     console.log('saved task: ', task);
     res.redirect('/tasks');
   });
