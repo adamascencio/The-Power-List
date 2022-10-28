@@ -157,7 +157,7 @@ ul > li {
 }
 
 .btn-close {
-  background-color: #fff;
+  background-color: lightgrey;
 }
 
 .card-body {
@@ -226,12 +226,39 @@ ul > li {
   justify-content: center;
   justify-items: center;
   width: 50vw;
+  max-width: 600px;
+}
+
+#task-listing > li {
+  width: 100%;
+}
+
+#notes-bg {
+  width: 50vw;
+  max-width: 600px;
+  background-color: #f2f2f2;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 #notes-heading {
   font-size: 2.5rem;
   font-style: italic;
   margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  #task-listing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+  }
+
+  #notes-bg {
+    width: 75%;
+  }
 }
 
 /* New Tasks Form Styles */
