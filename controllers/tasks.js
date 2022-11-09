@@ -103,8 +103,8 @@ function create (req, res) {
 }
 
 function viewTask(req, res) {
-  Task.findOne({user: req.user._id, date: new Date(req.params.date)}, function(err, task) {
-    console.log('task: ', task);
+  console.log('req.params: ', req.params);
+  Task.findOne({user: req.user._id, date: new Date(req.params.date).setUTCHours(0,0,0,0)}, function(err, task) {
     res.render('tasks/viewTask', {task, date: req.params.date});
   });
 }
