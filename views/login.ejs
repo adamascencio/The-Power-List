@@ -1,11 +1,9 @@
 <%- include('./partials/header') %>
+<div class="ctr-content">
   <div id="user-log-in">
     <h1>The Power List</h1>
     <div class="form-group">
       <ul class="instruction-grid">
-        <li class="span2 align-center">
-          <h3>The best productivity tool!</h3>
-        </li>
         <li class="justify-end">
           <h5>1)</h5>
         </li>
@@ -28,17 +26,18 @@
           <h5>4)</h5>
         </li>
         <li class="align-steps">
-          <h5>As you complete your tasks, press the completed button on the home page to mark your task as done.</h5>
+          <h5>If all 5 tasks are marked completed, you win the day. If not, it's a loss.</h5>
         </li>
         <li class="justify-end">
           <h5>5)</h5>
         </li>
         <li class="align-steps">
-          <h5>As you complete your tasks, press the completed button on the home page to mark your task as done.</h5>
+          <h5>View the calendar page to see the days you've won and lost. You'll gain momentum as you see the days stack where you've completed all tasks.</h5>
         </li>
       </ul>
       <a class="remove-text-decoration" href="/auth/google"><button class="btn btn-outline-dark btn-lg"><img
             class="google-logo" src="https://i.imgur.com/FHjYyi0.png">Continue with Google</button></a>
     </div>
   </div>
-  <%- include('./partials/footer') %>
+</div>
+<%- include('./partials/footer') %>

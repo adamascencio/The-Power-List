@@ -7,6 +7,7 @@ body {
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   text-align: center;
+  height: 100vh;
 }
 
 a {
@@ -61,6 +62,10 @@ ul {
 
 /* Landing Page Styles */
 
+li > h5, .btn-outline-dark {
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
 .form-group > p {
   text-align: center;
 }
@@ -73,6 +78,14 @@ ul {
 .align-steps {
   justify-self: center;
   align-self: center;
+}
+
+.ctr-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 .content-container {
@@ -100,9 +113,9 @@ ul {
 .instruction-grid {
   display: grid;
   grid-template-columns: 10% 90%;
-  grid-template-rows: repeat(6, 1fr);
   grid-gap: 20px;
   padding: 2% 5%;
+  margin: 0;
 }
 
 .remove-text-decoration {
@@ -119,14 +132,12 @@ ul {
 #user-log-in {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 50vw;
-  max-width: 700px;
-  height: 100%;
+  width: clamp(300px, 75vw, 600px);
   background-color: #f2f2f2;
   padding: 20px;
-  margin: 0 auto;
+  border: 5px solid lightgray;
+  border-radius: 10px;
+  box-shadow: #242121 0px 0px 10px;
 }
 
 /* Tasks Index Page Styles */
