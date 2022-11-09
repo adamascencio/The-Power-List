@@ -24,7 +24,9 @@ const month = dayjs().format("MM");
 const year = dayjs().format("YYYY");
 
 function show(req, res) {
-  Task.find({user: req.user._id, date: today}, function(err, tasks) {
+  Task.find({user: req.user._id, date: new Date().setUTCHours(0,0,0,0)}, function(err, tasks) {
+    console.log('tasks: ', tasks);
+    console.log('err: ', err);
     res.render('tasks/index', {tasks});
   });
 }
