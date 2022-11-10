@@ -4,7 +4,7 @@
       <%= user.name.split(' ')[0] %>' s Daily Tasks 
     </h1>
     <h3>
-      <%= new Date().setUTCHours(0,0,0,0).toLocaleDateString() %>
+      <%= new Date().toLocaleDateString() %>
     </h3>
     <% if (tasks.length===0) { %>
       <h2>You haven't added any tasks for today</h2>
