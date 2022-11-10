@@ -41,9 +41,9 @@ function index(req, res) {
   // find all user's tasks in current month
   Task.find({user: req.user._id,}, function(err, tasks) {
     const successDays =  tasks.filter(task => task.allTasksCompleted === true);
-    const successDayIds = successDays.map(task => dayjs(task.date).format('YYYY-MM-D'));
+    const successDayIds = successDays.map(task => task.formattedDate);
     const failDays = tasks.filter(task => task.allTasksCompleted === false);
-    const failDayIds = failDays.map(task => dayjs(task.date).format('YYYY-MM-D'));
+    const failDayIds = failDays.map(task => task.formattedDate);
     res.render('tasks/calendar', 
       {
         dayjs,
