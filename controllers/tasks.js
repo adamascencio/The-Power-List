@@ -19,7 +19,7 @@ module.exports = {
   delete: deleteNote
 };
 
-const today = dayjs().format("YYYY-MM-D");
+const today = dayjs(new Date().setUTCHours(0,0,0,0)).format("YYYY-MM-D");
 const month = dayjs().format("MM");
 const year = dayjs().format("YYYY");
 
