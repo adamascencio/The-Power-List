@@ -24,7 +24,7 @@ const month = dayjs().format("MM");
 const year = dayjs().format("YYYY");
 
 function show(req, res) {
-  Task.find({user: req.user._id, date: new Date().setUTCHours(0,0,0,0)}, function(err, tasks) {
+  Task.find({user: req.user._id, formattedDate: today}, function(err, tasks) {
     console.log('tasks: ', tasks);
     console.log('err: ', err);
     res.render('tasks/index', {tasks});
@@ -92,6 +92,7 @@ function create (req, res) {
    object.notes = req.body.notes;
   }
   object.date = new Date(req.body.date);
+  object.formattedDate = dayjs(req.body.date).format('YYYY-MM-D');
   var task = new Task(object);
   task.user = req.user._id;
   console.log('task: ', task);
@@ -104,7 +105,7 @@ function create (req, res) {
 
 function viewTask(req, res) {
   console.log('req.params: ', req.params);
-  Task.findOne({user: req.user._id, date: new Date(req.params.date).setUTCHours(0,0,0,0)}, function(err, task) {
+  Task.findOne({user: req.user._id, formattedDate: req.params.date}, function(err, task) {
     res.render('tasks/viewTask', {task, date: req.params.date});
   });
 }
