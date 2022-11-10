@@ -25,8 +25,6 @@ const year = dayjs().format("YYYY");
 
 function show(req, res) {
   Task.find({user: req.user._id, formattedDate: today}, function(err, tasks) {
-    console.log('tasks: ', tasks);
-    console.log('err: ', err);
     res.render('tasks/index', {tasks});
   });
 }
@@ -47,22 +45,15 @@ function index(req, res) {
     res.render('tasks/calendar', 
       {
         dayjs,
-        weekday,
-        weekOfYear,
-        daysInMonth,
         successDayIds, 
-        failDayIds, 
-        month, 
-        year 
+        failDayIds
       }
     );
   });
 }
 
 function newTask(req, res) {
-  const newMonth = ('0' + (new Date().getMonth()+1)).slice(-2);
-  const newDay = ('0' + new Date().getDate()).slice(-2);
-  const today = `${year}-${newMonth}-${newDay}`;
+  const today = dayjs().format("YYYY-MM-DD");
   res.render('tasks/new', {today});
 }
 
@@ -95,7 +86,6 @@ function create (req, res) {
   object.formattedDate = dayjs(req.body.date).format('YYYY-MM-D');
   var task = new Task(object);
   task.user = req.user._id;
-  console.log('task: ', task);
   task.save(function(err, task) {
     if (err) console.log(err);
     console.log('saved task: ', task);
