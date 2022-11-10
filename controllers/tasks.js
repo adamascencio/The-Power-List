@@ -20,8 +20,6 @@ module.exports = {
 };
 
 const today = dayjs().format("YYYY-MM-D");
-const month = dayjs().format("MM");
-const year = dayjs().format("YYYY");
 
 function show(req, res) {
   Task.find({user: req.user._id, formattedDate: today}, function(err, tasks) {
@@ -30,13 +28,7 @@ function show(req, res) {
 }
 
 function index(req, res) {
-  const daysInMonth = dayjs(`${year}-${month}`).daysInMonth();
-
-  // Mongoose Search Criteria
-  const start = new Date(`${year}-${month}-01`).setUTCHours(0, 0, 0, 0);
-  const end = new Date(`${year}-${month}-${daysInMonth}`).setUTCHours(0, 0, 0, 0);
-
-  // find all user's tasks in current month
+  // find and return all user's tasks
   Task.find({user: req.user._id,}, function(err, tasks) {
     const successDays =  tasks.filter(task => task.allTasksCompleted === true);
     const successDayIds = successDays.map(task => task.formattedDate);
