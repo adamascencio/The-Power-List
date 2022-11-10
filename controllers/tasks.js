@@ -19,7 +19,7 @@ module.exports = {
   delete: deleteNote
 };
 
-const today = dayjs(new Date().setUTCHours(0,0,0,0)).format("YYYY-MM-D");
+const today = dayjs().format("YYYY-MM-D");
 const month = dayjs().format("MM");
 const year = dayjs().format("YYYY");
 
@@ -41,9 +41,9 @@ function index(req, res) {
   // find all user's tasks in current month
   Task.find({user: req.user._id,}, function(err, tasks) {
     const successDays =  tasks.filter(task => task.allTasksCompleted === true);
-    const successDayIds = successDays.map(task => dayjs(task.date).add(1, 'day').format('YYYY-MM-D'));
+    const successDayIds = successDays.map(task => dayjs(task.date).format('YYYY-MM-D'));
     const failDays = tasks.filter(task => task.allTasksCompleted === false);
-    const failDayIds = failDays.map(task => dayjs(task.date).add(1, 'day').format('YYYY-MM-D'));
+    const failDayIds = failDays.map(task => dayjs(task.date).format('YYYY-MM-D'));
     res.render('tasks/calendar', 
       {
         dayjs,
