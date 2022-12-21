@@ -1,4 +1,3 @@
-const User = require('../models/user');
 const Task = require('../models/task');
 const dayjs = require('dayjs')
 const weekday = require('dayjs/plugin/weekday');
