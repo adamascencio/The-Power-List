@@ -104,9 +104,9 @@
     function init() {
       newYear = INITIAL_YEAR;
       currentMonthIdx = new Date().getMonth();
-      previousMonthDayCount = MONTHCOUNTS[currentMonthIdx - 1];
+      previousMonthDayCount = currentMonthIdx ? MONTHCOUNTS[currentMonthIdx - 1] : MONTHCOUNTS[11];
       currentMonthDayCount = MONTHCOUNTS[currentMonthIdx];
-      nextMonthDayCount = MONTHCOUNTS[currentMonthIdx + 1];
+      nextMonthDayCount = currentMonthIdx === 11 ? MONTHCOUNTS[0] : MONTHCOUNTS[currentMonthIdx + 1];
       currentMonthDaysArray = [];
       previousMonthDaysArray = [];
       nextMonthDaysArray = [];
