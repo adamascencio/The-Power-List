@@ -18,7 +18,7 @@ module.exports = {
   delete: deleteNote
 };
 
-const today = dayjs().format("YYYY-MM-D");
+const today = dayjs().format("YYYY-M-D");
 
 function show(req, res) {
   Task.find({user: req.user._id, formattedDate: today}, function(err, tasks) {
@@ -73,7 +73,7 @@ function create (req, res) {
    object.notes = req.body.notes;
   }
   object.date = new Date(req.body.date);
-  object.formattedDate = dayjs(req.body.date).format('YYYY-MM-D');
+  object.formattedDate = dayjs(req.body.date).format('YYYY-M-D');
   var task = new Task(object);
   task.user = req.user._id;
   task.save(function(err, task) {
