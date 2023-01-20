@@ -44,7 +44,6 @@ function index(req, res) {
 }
 
 function newTask(req, res) {
-  const today = dayjs().format("YYYY-MM-DD");
   res.render('tasks/new', {today});
 }
 
