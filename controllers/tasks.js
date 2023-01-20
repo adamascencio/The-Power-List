@@ -78,13 +78,11 @@ function create (req, res) {
   task.user = req.user._id;
   task.save(function(err, task) {
     if (err) console.log(err);
-    console.log('saved task: ', task);
     res.redirect('/tasks');
   });
 }
 
 function viewTask(req, res) {
-  console.log('req.params: ', req.params);
   Task.findOne({user: req.user._id, formattedDate: req.params.date}, function(err, task) {
     res.render('tasks/viewTask', {task, date: req.params.date});
   });
