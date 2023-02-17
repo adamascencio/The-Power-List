@@ -19,6 +19,7 @@ module.exports = {
 };
 
 const today = dayjs().format("YYYY-M-D");
+const todayDateFormFormatted = dayjs().format("YYYY-MM-DD");
 
 function show(req, res) {
   Task.find({user: req.user._id, formattedDate: today}, function(err, tasks) {
@@ -44,7 +45,7 @@ function index(req, res) {
 }
 
 function newTask(req, res) {
-  res.render('tasks/new', {today});
+  res.render('tasks/new', {todayDateFormFormatted});
 }
 
 function create (req, res) {
