@@ -418,10 +418,12 @@ ol, li {
 
 .legend-grid {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 20% max-content;
   gap: 10px 20px;
   justify-items: start;
+  justify-content: center;
   width: 50vw;
+  max-width: 500px;
   margin: 50px auto;
 }
 
@@ -454,6 +456,12 @@ ol, li {
   cursor: pointer;
   border: 2px solid var(--bs-red);
   transform: scale(1.05);
+}
+
+.today {
+  border: 3px solid lightcoral;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 /* calendar media queries */

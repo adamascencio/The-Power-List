@@ -36,7 +36,6 @@ function index(req, res) {
     const failDayIds = failDays.map(task => task.formattedDate);
     res.render('tasks/calendar', 
       {
-        dayjs,
         successDayIds, 
         failDayIds
       }

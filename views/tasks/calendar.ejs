@@ -32,7 +32,7 @@
     const INITIAL_MONTH = new Date().getMonth();
     const PRIOR_MONTH = INITIAL_MONTH - 1;
     const NEXT_MONTH = INITIAL_MONTH + 1;
-    const TODAY = <%= dayjs().format('YYYY-MM-D') %>;
+    const TODAY = `${INITIAL_YEAR}-${INITIAL_MONTH + 1}-${new Date().getDate()}`;
     const SUCCESSIDS = <%- JSON.stringify(successDayIds) %>;
     const FAILIDS = <%- JSON.stringify(failDayIds) %>;
 
@@ -151,6 +151,7 @@
         createDayDivs(day);
         if (SUCCESSIDS.includes(day.id) || FAILIDS.includes(day.id)) createLinks(day);
       });
+      document.getElementById(TODAY).classList.add('today');
     }
 
     function renderNextMonthCalendarDays() {
