@@ -27,7 +27,7 @@ Once you have added your tasks, you can start tracking your progress. Tasks will
 - Express.js
 
 # Getting Started
-[Click to use the Power List](https://the-power-list.herokuapp.com/)
+[Click to use the Power List](https://power-list.azurewebsites.net/)
 
 # Next Steps
 - Update styling to fit task cards on mobile
