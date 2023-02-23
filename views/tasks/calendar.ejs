@@ -151,7 +151,8 @@
         createDayDivs(day);
         if (SUCCESSIDS.includes(day.id) || FAILIDS.includes(day.id)) createLinks(day);
       });
-      if (currentMonthIdx === INITIAL_MONTH) document.getElementById(TODAY).classList.add('today');
+      if (currentMonthIdx === INITIAL_MONTH && 
+          newYear === INITIAL_YEAR) document.getElementById(TODAY).classList.add('today');
     }
 
     function renderNextMonthCalendarDays() {
